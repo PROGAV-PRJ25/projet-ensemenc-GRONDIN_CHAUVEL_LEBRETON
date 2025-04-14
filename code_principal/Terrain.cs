@@ -5,6 +5,7 @@ public class Terrain
     public string TypeSol { get; set; } // argileux, sableux, limoneux, etc.
     public float Humidite { get; set; } // en pourcentage
     public float Luminosite { get; set; } // en %
+    public float Temperature { get; set; } // en °C
     public bool EstProtege { get; set; } // présence d'une serre, d'un filet, etc.
     public List<Plante> PlantesCultivees { get; set; }
     // création du terrain visuel
@@ -13,13 +14,14 @@ public class Terrain
     public int Colonnes {get;protected set;} 
     public int [,] TerrainVisuel {get; set;}
 
-    public Terrain (string nom, float surface, string typeSol, float humidite, float luminosite, bool estProtege, int lignes = 15, int colonnes = 15) // constructeur
+    public Terrain (string nom, float surface, string typeSol, float humidite, float luminosite, float temperature, bool estProtege, int lignes = 15, int colonnes = 15) // constructeur
     {
         Nom = nom;
         Surface = surface;
         TypeSol = typeSol;
         Humidite = humidite;
         Luminosite = luminosite;
+        Temperature = temperature;
         EstProtege = estProtege;
         PlantesCultivees = new List<Plante> ();
         Lignes = lignes;
@@ -47,8 +49,14 @@ public class Terrain
             {
                 switch (terrainVisuel[i, j]) // choix d'un switch pour éviter un grand nombre de répétition de if
                 {
-                    case 0: // si la case de la matrice a pour valeur 0 alors on affiche un carré "🟩"
+                    case 0: // si la case de la matrice a pour valeur 0 alors on affiche un carré "🟩" --> représentation d'un terrain sans plante
                     Console.Write(" 🟩 ");
+                    break;
+                    case 1: // si la case de la matrice a pour valeur 1 alors on affiche un carré "🟫" --> représentation d'un terrain avec des semis
+                    Console.Write(" 🟫 ");
+                    break ;
+                    case 2: // si la case de la matrice a pour valeur 1 alors on affiche un symbole "🌱" --> représentation d'un terrain avec des jeunes pousses
+                    Console.Write(" 🌱 ");
                     break;
                 }
             }
@@ -90,6 +98,7 @@ public class Terrain
                         + $"Surface libre : {SurfaceLibre()} m²"
                         + $"Humidité : {Humidite}% \n"
                         + $"Luminosité : {Luminosite}% \n"
+                        + $"Température : {Temperature}°C \n"
                         + $"Protégé :" + (EstProtege? "Oui" : "Non") + "\n"
                         + $"Plantes cultivés : \n";
 
