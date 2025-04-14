@@ -9,9 +9,9 @@ public class Terrain
     public bool EstProtege { get; set; } // présence d'une serre, d'un filet, etc.
     public List<Plante> PlantesCultivees { get; set; }
     // création du terrain visuel
-    public int Lignes {get;protected set;} 
+    public int Lignes {get; set;} 
     
-    public int Colonnes {get;protected set;} 
+    public int Colonnes {get; set;} 
     public int [,] TerrainVisuel {get; set;}
 
     public Terrain (string nom, float surface, string typeSol, float humidite, float luminosite, float temperature, bool estProtege, int lignes = 15, int colonnes = 15) // constructeur
@@ -35,7 +35,7 @@ public class Terrain
         {
             for(int j = 0; j < Colonnes; j++)
             {
-                TerrainVisuel[i, j] = 0; // le terrain est rempli par des 0
+                TerrainVisuel[i, j] = 0 ; // le terrain est rempli par des 0
             }
         }
         return TerrainVisuel; // retour d'une matrice 2D remplie de 0
