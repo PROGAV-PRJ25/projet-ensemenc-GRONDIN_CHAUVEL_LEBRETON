@@ -58,6 +58,9 @@ public class Terrain
                     case 2: // si la case de la matrice a pour valeur 1 alors on affiche un symbole "🌱" --> représentation d'un terrain avec des jeunes pousses
                     Console.Write(" 🌱 ");
                     break;
+                    case 3: 
+                    Console.Write(" 👣 ");
+                    break;
                 }
             }
             Console.WriteLine();
