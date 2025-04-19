@@ -53,13 +53,16 @@ public class Terrain
                     Console.Write(" 🟩 ");
                     break;
                     case 1: // si la case de la matrice a pour valeur 1 alors on affiche un carré "🟫" --> représentation d'un terrain avec des semis
-                    Console.Write(" 🟫 ");
+                    Console.Write(" 🟨 ");
                     break ;
-                    case 2: // si la case de la matrice a pour valeur 1 alors on affiche un symbole "🌱" --> représentation d'un terrain avec des jeunes pousses
+                    case 2: // si la case de la matrice a pour valeur 2 alors on affiche un symbole "🌱" --> représentation d'un terrain avec des jeunes pousses
                     Console.Write(" 🌱 ");
                     break;
-                    case 3: 
+                    case 3: // si la case de la matrice a pour valeur 3 alors on affiche un symbole "👣"
                     Console.Write(" 👣 ");
+                    break;
+                    case 4: // si la case de la matrice a pour valeur 4 alors on affiche un symbole "🟫"
+                    Console.Write(" 🟫 ");
                     break;
                 }
             }
