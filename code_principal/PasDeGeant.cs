@@ -11,14 +11,14 @@ public class PasDeGeant : Obstacle
         Random random = new Random ();
         int PositionX = random.Next (0,Univers.Lignes-1);
         int PositionY = random.Next (0,Univers.Colonnes-1);
-        Univers.TerrainVisuel [PositionX,PositionY] = 3;
-        Univers.TerrainVisuel [PositionX+1,PositionY] = 3;
-        Univers.TerrainVisuel [PositionX,PositionY+1] = 3;
-        Univers.TerrainVisuel [PositionX-1,PositionY] = 3;
-        Univers.TerrainVisuel [PositionX,PositionY-1] = 3;
-        Univers.TerrainVisuel [PositionX+1,PositionY+1] = 3;
-        Univers.TerrainVisuel [PositionX-1,PositionY-1] = 3;
-        Univers.TerrainVisuel [PositionX+1,PositionY-1] = 3;
-        Univers.TerrainVisuel [PositionX-1,PositionY+1] = 3;
+        Univers.TerrainVisuel [PositionX,PositionY] = 6;
+        Univers.TerrainVisuel [PositionX+1,PositionY] = 6;
+        Univers.TerrainVisuel [PositionX,PositionY+1] = 6;
+        Univers.TerrainVisuel [PositionX-1,PositionY] = 6;
+        Univers.TerrainVisuel [PositionX,PositionY-1] = 6;
+        Univers.TerrainVisuel [PositionX+1,PositionY+1] = 6;
+        Univers.TerrainVisuel [PositionX-1,PositionY-1] = 6;
+        Univers.TerrainVisuel [PositionX+1,PositionY-1] = 6;
+        Univers.TerrainVisuel [PositionX-1,PositionY+1] = 6;
     }
 }

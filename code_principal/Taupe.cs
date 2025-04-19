@@ -10,7 +10,7 @@ public class Taupe : Obstacle
             Random random = new Random ();
             int PositionX = random.Next (0,Univers.Lignes-1);
             int PositionY = random.Next (0,Univers.Colonnes-1);
-            Univers.TerrainVisuel [PositionX,PositionY] = 4;
+            Univers.TerrainVisuel [PositionX,PositionY] = 7;
             i++;
         }
         

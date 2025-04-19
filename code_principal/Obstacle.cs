@@ -19,6 +19,10 @@ public abstract class Obstacle
         DureeTours = dureeTours;
     }
    
+    public void DefinirUnivers (Terrain terrain)
+    {
+        Univers = terrain;
+    }
     public abstract void Action() ;
     public override string ToString() // méthode pour afficher textuellement les obstacles et tout les informations qui les concernent
     {
