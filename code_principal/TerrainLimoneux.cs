@@ -2,7 +2,7 @@ public class TerrainLimoneux : Terrain
 {
     public override string DescriptionTerrain => "Terrain limoneux, équilibré et fertile.";
 
-    public TerrainLimoneux () : base("Terrain limoneux", 225f, "Printemps", "Argileux", 60f, 70f, 20f, false, 15, 15)
+    public TerrainLimoneux () : base("Terrain limoneux", 225f, "Printemps", "Limoneux", 60f, 70f, 20f, false, 15, 15)
                             {
                                 TypeSol = "Limoneux";
                             }

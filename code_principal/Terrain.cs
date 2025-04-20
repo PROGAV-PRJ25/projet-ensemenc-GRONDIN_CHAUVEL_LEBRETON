@@ -3,7 +3,7 @@ public abstract class Terrain
     public string Nom { get; set; } // pour différencier les différents terrains
     public float Surface { get; set; } // en m²
     public string Saison { get; set; } // printemps, été, automne, hiver
-    public string TypeSol { get; set; } // argileux, sableux, limoneux, etc.
+    public string TypeSol { get; set; } // argileux, sableux, limoneux, forestier.
     public float Humidite { get; set; } // en pourcentage
     public float Luminosite { get; set; } // en %
     public float Temperature { get; set; } // en °C
@@ -87,6 +87,12 @@ public abstract class Terrain
                         break;
                     case 7: // tas de terre
                         Console.Write(" 🟤 ");
+                        break;
+                    case 8: // rocher
+                        Console.Write(" 🪨 ");
+                        break;
+                    case 9: // arbre
+                        Console.Write(" 🌲 ");
                         break;
                     default:
                         Console.Write(" · ");
