@@ -1,5 +1,3 @@
-﻿//Terrain terrainEssai = new Terrain("Jardin basique", 225f, "été", "normal", 50f, 70f, 22.5f, false);
-//Console.WriteLine(terrainEssai);
-//terrainEssai.InitialiserTerrainVisuel();
-//terrainEssai.AfficherTerrainVisuel(terrainEssai.TerrainVisuel);
-
+﻿﻿// créer ici les fleurs et autres qu'on souhaite avoir dans notre jardin !!
+// utiliser une liste 
+// List<Fleur> fleurs = new List<Fleur> {new Fleur(), new Fleur()}
