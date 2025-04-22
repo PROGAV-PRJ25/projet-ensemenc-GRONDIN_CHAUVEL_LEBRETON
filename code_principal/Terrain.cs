@@ -2,6 +2,7 @@ public abstract class Terrain
 {
     public string Nom { get; set; } // pour différencier les différents terrains
     public float Surface { get; set; } // en m²
+    public string Saison { get; set; } // printemps, été, automne, hiver
     public string TypeSol { get; set; } // argileux, sableux, limoneux, etc.
     public float Humidite { get; set; } // en pourcentage
     public float Luminosite { get; set; } // en %
@@ -60,15 +61,36 @@ public abstract class Terrain
             {
                 switch (terrainVisuel[i, j]) // choix d'un switch pour éviter un grand nombre de répétition de if
                 {
-                    case 0: // si la case de la matrice a pour valeur 0 alors on affiche un carré "🟩" --> représentation d'un terrain sans plante
-                    Console.Write(" 🟩 ");
-                    break;
-                    case 1: // si la case de la matrice a pour valeur 1 alors on affiche un carré "🟫" --> représentation d'un terrain avec des semis
-                    Console.Write(" 🟫 ");
-                    break ;
-                    case 2: // si la case de la matrice a pour valeur 1 alors on affiche un symbole "🌱" --> représentation d'un terrain avec des jeunes pousses
-                    Console.Write(" 🌱 ");
-                    break;
+                    case 0: // terrain vide
+                        if (TypeSol == "Sableux") Console.Write(" 🟨 ");
+                        else if (TypeSol == "Argileux") Console.Write(" 🟫 ");
+                        else if (TypeSol == "Limoneux") Console.Write(" 🟧 ");
+                        else Console.Write(" 🟩 ");
+                        break;
+                    case 1: // semis
+                        Console.Write(" 🌱 ");
+                        break;
+                    case 2: // jeune plante
+                        Console.Write(" 🌿 ");
+                        break;
+                    case 3: // plante mature
+                        Console.Write(" 🌳 ");
+                        break;
+                    case 4: // plante en fleurs
+                        Console.Write(" 🌼 ");
+                        break;
+                    case 5: // plante avec fruits/légumes
+                        Console.Write(" 🍎 ");
+                        break;
+                    case 6: // pas de géant
+                        Console.Write(" 👣 ");
+                        break;
+                    case 7: // tas de terre
+                        Console.Write(" 🟤 ");
+                        break;
+                    default:
+                        Console.Write(" · ");
+                        break;
                 }
             }
             Console.WriteLine("│");
@@ -149,6 +171,7 @@ public abstract class Terrain
     {
         string resultat = $"Terrain : {Nom} \n"
                         + $"Type de sol : {TypeSol} \n"
+                        +$"Description : {DescriptionTerrain}\n"
                         + $"Surface totale : {Surface} m² \n"
                         + $"Surface libre : {SurfaceLibre()} m²"
                         + $"Humidité : {Humidite}% \n"
