@@ -1,5 +1,6 @@
-public class Fleur : Plante 
+public abstract class Fleur : Plante 
 {
-    public Fleur() : base (nom, saisonPref, terrain,typeSolNecessaire, humiditeNecessaire, temperatureNecessaire, luminositeNecessaire, espaceNecessaire, sante, esperancedeVie);
-    
+    public Fleur() : base () {}
+
+    public abstract void Afficher ();
 }

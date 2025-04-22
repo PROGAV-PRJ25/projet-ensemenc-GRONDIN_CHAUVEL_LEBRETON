@@ -1,20 +1,23 @@
 public class Plante
 {
     public string Nom { get; set; } //pour différencier les différentes plantes 
-    public enum Type { Fruit, Legume, Fleur, PlanteOriginale, Herbe } //  1 = Fruit, 2 = Légume, 3 = Fleur,..
+    public enum Type { Fruit, Legume, Fleur, PlanteOriginale, Herbe, Champignon } //  1 = Fruit, 2 = Légume, 3 = Fleur,..
     public Type TypePlante { get; set; }
     public string SaisonPref { get; private set; }
     public string TypeSolNeccessaire { get; set; }
     public float HumiditeNecessaire { get; set; }
     public float TemperatureNecessaire { get; set; }
-    public float LuminositeNecessaire { get; set; }
+    public int LuminositeNecessaire { get; set; }
     public int EspaceNecessaire { get; private set; } // Nécessaire permet de mettre en écidence que ce sont des conditions spécifiques à la plante  
-    public string Sante { get; private set; } // pour différencier les différents états de la plante 
+
+    public enum EtatSante {EnBonneSante,Malade,Morte} // pour différencier les différents états de la plante 
+    public EtatSante Sante {get; private set;}
     public int EsperanceDeVie { get; private set; }
     public Terrain Terrain { get; set; } // pas sur ?? List <Terrain>
     public float Croissance {get;set;}
+    private bool EstArrosee = false;
 
-    public Plante(string nom, string saisonPref, Type typePlante, Terrain terrain, string typeSolNecessaire, float humiditeNecessaire, float temperatureNecessaire, float luminositeNecessaire, int espaceNecessaire, string sante, int esperanceDeVie, float croissance = 0) // utilisation d'une constante t peu importe pour enum
+    public Plante(string nom, string saisonPref, Type typePlante, string typeSolNecessaire, float humiditeNecessaire, float temperatureNecessaire, int luminositeNecessaire, int espaceNecessaire, string sante, int esperanceDeVie, float croissance = 0) // utilisation d'une constante t peu importe pour enum
     {
         Nom = nom;
         SaisonPref = saisonPref;
@@ -23,19 +26,15 @@ public class Plante
         HumiditeNecessaire = humiditeNecessaire;
         TemperatureNecessaire = temperatureNecessaire;
         LuminositeNecessaire = luminositeNecessaire;
-        Terrain = terrain;
         EspaceNecessaire = espaceNecessaire;
         Sante = sante;
         EsperanceDeVie = esperanceDeVie;
-        Croissance = croissance;
-
     }
 
     public float CroissanceSelonConditions(Terrain terrain)
     {
         int nbConditionsTotal = 6;
-        float conditionsOk = 0;
-        float pourcentageConditions = conditionsOk / nbConditionsTotal;
+        int conditionsOk = 0;
 
         if (terrain.Saison == SaisonPref)
         {
@@ -45,15 +44,15 @@ public class Plante
         {
             conditionsOk++;
         }
-        if (Math.Abs(terrain.Humidite - HumiditeNecessaire) > 3) // fonction qui renvoie la valeur absolue avec une marge de +/-3
+        if (Math.Abs(terrain.Humidite - HumiditeNecessaire) <= 3) // fonction qui renvoie la valeur absolue avec une marge de +/-3
         {
             conditionsOk++;
         }
-        if (Math.Abs(terrain.Luminosite - LuminositeNecessaire) > 3)
+        if (Math.Abs(terrain.Luminosite - LuminositeNecessaire) <= 3)
         {
             conditionsOk++;
         }
-        if (Math.Abs(terrain.Temperature - TemperatureNecessaire) > 5)
+        if (Math.Abs(terrain.Temperature - TemperatureNecessaire) <= 5)
         {
             conditionsOk++;
         }
@@ -61,28 +60,57 @@ public class Plante
         {
             conditionsOk++;
         }
-        if (pourcentageConditions < 0.5)
-        {
-            Console.WriteLine($"{Nom} est morte 😢");
-        }
-
-        if ((pourcentageConditions > 0.5) && (pourcentageConditions < 0.75))
-        {
-            Croissance = 0.2;
-            Console.WriteLine($"{Nom} pousse bien {pourcentageConditions * 100}%");
-        }
-        if ((pourcentageConditions > 0.75) && (pourcentageConditions < 1))
-        {
-            Croissance = 0.3;
-            Console.WriteLine($"{Nom} pousse VITE !! {pourcentageConditions * 100}%");
-        }
-        return Croissance;
+        return (float)(conditionsOk/nbConditionsTotal)*100;
     }
 
-    public void AfficherJauge(float pourcentageConditions)
+    public void MettreAJourCroissance() // sert à faire évoluer la plante à chaque tour en fonction des conditions du terrain et si la plante a été arrosée 
+    {
+        if (pourcentageConditions < 0.5)
+        {
+            Sante = "Morte";
+            Console.WriteLine($"{Nom} est morte 😢");
+        }
+        else if (pourcentageConditions < 0.75)
+        {
+            Croissance += 0.2;
+            Console.WriteLine($"{Nom} pousse bien {pourcentageConditions * 100}%");
+        }
+        else
+        {
+            Croissance += 0.3;
+            Console.WriteLine($"{Nom} pousse VITE !! {pourcentageConditions * 100}%");
+        }
+
+        if (EstArrosee)
+        {
+            Croissance += 0.3;
+            EstArrosee = false;
+        }
+
+        if (Sante == EtatSante.Malade)
+        {
+            Console.WriteLine($"{Nom} est malade, elle ne pousse pas aujourd'hui !");
+        }
+    }
+
+        public void ArroserPlantes() //Sert à arroser une plante une seule fois 
+    {
+        if (!EstArrosee)// si non arrosée => on veut qu'elle soit arrosée
+        {
+            EstArrosee = true;
+            Console.WriteLine("Plante arrosée 💧 !!");
+        }
+        else 
+        {
+            Console.WriteLine("Cette plante a déjà été arrosée récemment"); // si arrosée est true alors on ne peut pas arroser une nouvelle fois 
+        }
+    }
+
+    public void AfficherJauge()
     {
         int totalVies = 10;
-        int Vies = (int)pourcentageConditions * totalVies;
+        float pourcentageConditions = EvaluerConditions(Terrain);
+        int Vies = (int)(pourcentageConditions * totalVies);
         string jauge = "";
 
         for (int i = 0; i < totalVies; i++)
@@ -99,47 +127,37 @@ public class Plante
         Console.WriteLine($"Sante : {jauge} {pourcentageConditions * 100}");
     }
 
-    public void ArroserPlantes(int planteArrosée)
-    {
-        planteArrosée = 1;
-        Console.WriteLine("Plante arrosée 💧 !!");
-    }
-
-    public float EvolutionPlantes()
-    {
-            if (Croissance >= 1.5)
-        {    
-            if (CroissanceSelonConditions(Terrain) == 0.2)
-            {
-                Croissance += 0.2;
-            }
-            if (CroissanceSelonConditions(Terrain) == 0.3)
-            {
-                Croissance += 0.3;
-            }
-            if (ArroserPlantes(planteArrosée) == 1)
-            {
-                Croissance += 0.3;
-            }
-        }
-        return Croissance;  
-    }
+    public void EtatFinal(){}   
 
     public void AfficherEvolutionPlantes()
     {
         if (Croissance <= 0.5)
         {
-
+            Console.WriteLine($"{Nom} vient de germer ") ; // changer à mettre en lien avec le terrain 
         }
-        if ((Croissance > 0.5) && (Croissance < 1.5))
+        else if (Croissance < 1.5)
         {
-
+            Console.WriteLine($"{Nom} est en croissance ");
         }
-        if (Croissance = 1.5)
+        if (Croissance == 1.5)
         {
-
+            Console.WriteLine($"{Nom} est mature");
         }
     }
 
-    //faire sous classe pour les différentes plantes avec les conditions précises => héritage ! 
+    public void Contaminer(string cause) // Permet de contaminer une plante à mettre en relation avec les obstacles mais je garde ou bien c'est à mettre dans obstacles.cs ? 
+    {
+        if (Sante == EtatSante.EnBonneSante)
+        {
+            Sante==EtatSante.Malade;
+            Console.WriteLine($"{Nom} a été contaminée par {cause} !");
+        }
+    }
+    //Eloooo ou moi ? 
+    //une méthode Soigner aussi peut être pour Gwen
+
+    public override string ToString()
+    {
+        return $"Nom : {Nom}, Type : {TypePlante}, Santé : {Sante}, Croissance : {Croissance}";
+    }
 }
