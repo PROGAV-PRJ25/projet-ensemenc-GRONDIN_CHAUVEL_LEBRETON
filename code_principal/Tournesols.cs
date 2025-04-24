@@ -4,6 +4,6 @@ public class Tournesol : Fleur
 
     public override int EtatFinal()
     {
-        return ;
+        return 7;
     }
 }
