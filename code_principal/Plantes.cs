@@ -29,7 +29,7 @@ public class Plante
         Sante = sante;
         EsperanceDeVie = esperanceDeVie;
     }
-
+    
     public float CroissanceSelonConditions(Terrain terrain)
     {
         int nbConditionsTotal = 6;
