@@ -1,20 +1,19 @@
 public class Plante
 {
     public string Nom { get; set; } //pour différencier les différentes plantes 
-    public enum Type { Fruit, Legume, Fleur, PlanteOriginale, Herbe, Champignon } //  1 = Fruit, 2 = Légume, 3 = Fleur,..
-    public Type TypePlante { get; set; }
+    public enum Type { Fruit, Legume, Fleur, Herbe, Champignon } //  1 = Fruit, 2 = Légume, 3 = Fleur,..
+    public Type TypePlante { get; private set; }
     public string SaisonPref { get; private set; }
-    public string TypeSolNeccessaire { get; set; }
-    public float HumiditeNecessaire { get; set; }
-    public float TemperatureNecessaire { get; set; }
-    public int LuminositeNecessaire { get; set; }
+    public string TypeSolNeccessaire { get; private set; }
+    public float HumiditeNecessaire { get; private set; }
+    public float TemperatureNecessaire { get; private set; }
+    public int LuminositeNecessaire { get; private set; }
     public int EspaceNecessaire { get; private set; } // Nécessaire permet de mettre en écidence que ce sont des conditions spécifiques à la plante  
-
     public enum EtatSante {EnBonneSante,Malade,Morte} // pour différencier les différents états de la plante 
     public EtatSante Sante {get; private set;}
     public int EsperanceDeVie { get; private set; }
-    public Terrain Terrain { get; set; } // pas sur ?? List <Terrain>
-    public float Croissance {get;set;}
+    public Terrain Terrain { get; private set; } // pas sur ?? List <Terrain>
+    public float Croissance {get;private set;}
     private bool EstArrosee = false;
 
     public Plante(string nom, string saisonPref, Type typePlante, string typeSolNecessaire, float humiditeNecessaire, float temperatureNecessaire, int luminositeNecessaire, int espaceNecessaire, string sante, int esperanceDeVie, float croissance = 0) // utilisation d'une constante t peu importe pour enum
@@ -127,17 +126,17 @@ public class Plante
         Console.WriteLine($"Sante : {jauge} {pourcentageConditions * 100}");
     }
 
-    public void EtatFinal(){}   
+    public abstract void EtatFinal(){}   
 
     public void AfficherEvolutionPlantes()
     {
         if (Croissance <= 0.5)
         {
-            Console.WriteLine($"{Nom} vient de germer ") ; // changer à mettre en lien avec le terrain 
+            Console.WriteLine($"{Nom} vient de germer") ; // changer à mettre en lien avec le terrain 
         }
         else if (Croissance < 1.5)
         {
-            Console.WriteLine($"{Nom} est en croissance ");
+            Console.WriteLine($"{Nom} est en croissance");
         }
         if (Croissance == 1.5)
         {
@@ -153,8 +152,15 @@ public class Plante
             Console.WriteLine($"{Nom} a été contaminée par {cause} !");
         }
     }
-    //Eloooo ou moi ? 
-    //une méthode Soigner aussi peut être pour Gwen
+
+     public void Soigner(string cause) // Permet de soigner une plante
+    {
+        if (Sante == EtatSante.Malade)
+        {
+            Sante==EtatSante.EnBonneSante;
+            Console.WriteLine($"{Nom} a été soigné par {cause} ! Youpiiiii !");
+        }
+    }
 
     public override string ToString()
     {

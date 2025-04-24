@@ -4,6 +4,6 @@ public class Rose : Fleur
 
     public override int EtatFinal()
     {
-        return ;// faut que le tableau d'emojy soit fini ! 
+        return  6; 
     }
 }

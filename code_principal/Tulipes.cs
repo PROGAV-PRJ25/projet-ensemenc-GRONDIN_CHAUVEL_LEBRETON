@@ -4,6 +4,6 @@ public class Tulipe : Fleur
 
     public override int EtatFinal()
     {
-        return ;
+        return 8;
     }
 }
