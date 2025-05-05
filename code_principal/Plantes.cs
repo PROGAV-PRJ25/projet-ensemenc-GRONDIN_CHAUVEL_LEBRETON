@@ -26,7 +26,8 @@ public class Plante
         TemperatureNecessaire = temperatureNecessaire;
         LuminositeNecessaire = luminositeNecessaire;
         EspaceNecessaire = espaceNecessaire;
-        Sante = sante;
+        Croissance = croissance;
+        Sante = EtatSante.EnBonneSante;
         EsperanceDeVie = esperanceDeVie;
     }
     
@@ -59,30 +60,31 @@ public class Plante
         {
             conditionsOk++;
         }
-        return (float)(conditionsOk/nbConditionsTotal)*100;
+        return (float)(conditionsOk/(double)nbConditionsTotal)*100;
     }
 
     public void MettreAJourCroissance() // sert à faire évoluer la plante à chaque tour en fonction des conditions du terrain et si la plante a été arrosée 
     {
-        if (pourcentageConditions < 0.5)
+        float pourcentageConditions = CroissanceSelonConditions(Terrain);
+        if (pourcentageConditions < 50)
         {
-            Sante = "Morte";
+            Sante = EtatSante.Morte;
             Console.WriteLine($"{Nom} est morte 😢");
         }
-        else if (pourcentageConditions < 0.75)
+        else if (pourcentageConditions < 75)
         {
-            Croissance += 0.2;
-            Console.WriteLine($"{Nom} pousse bien {pourcentageConditions * 100}%");
+            Croissance += 0.2f;
+            Console.WriteLine($"{Nom} pousse bien {pourcentageConditions}%");
         }
         else
         {
-            Croissance += 0.3;
-            Console.WriteLine($"{Nom} pousse VITE !! {pourcentageConditions * 100}%");
+            Croissance += 0.3f;
+            Console.WriteLine($"{Nom} pousse VITE !! {pourcentageConditions}%");
         }
 
         if (EstArrosee)
         {
-            Croissance += 0.3;
+            Croissance += 0.3f;
             EstArrosee = false;
         }
 
@@ -108,8 +110,8 @@ public class Plante
     public void AfficherJauge()
     {
         int totalVies = 10;
-        float pourcentageConditions = EvaluerConditions(Terrain);
-        int Vies = (int)(pourcentageConditions * totalVies);
+        float pourcentageConditions = CroissanceSelonConditions(Terrain);
+        int Vies = (int)(pourcentageConditions * totalVies/100);
         string jauge = "";
 
         for (int i = 0; i < totalVies; i++)
@@ -123,22 +125,22 @@ public class Plante
                 jauge += "░";
             }
         }
-        Console.WriteLine($"Sante : {jauge} {pourcentageConditions * 100}");
+        Console.WriteLine($"Sante : {jauge} {pourcentageConditions}");
     }
 
-    public abstract void EtatFinal(){}   
+    public abstract int EtatFinal(){}   
 
     public void AfficherEvolutionPlantes()
     {
-        if (Croissance <= 0.5)
+        if (Croissance <= 0.5f)
         {
             Console.WriteLine($"{Nom} vient de germer") ; // changer à mettre en lien avec le terrain 
         }
-        else if (Croissance < 1.5)
+        else if (Croissance < 1.5f)
         {
             Console.WriteLine($"{Nom} est en croissance");
         }
-        if (Croissance == 1.5)
+        if (Croissance == 1.5f)
         {
             Console.WriteLine($"{Nom} est mature");
         }
@@ -148,7 +150,7 @@ public class Plante
     {
         if (Sante == EtatSante.EnBonneSante)
         {
-            Sante==EtatSante.Malade;
+            Sante = EtatSante.Malade;
             Console.WriteLine($"{Nom} a été contaminée par {cause} !");
         }
     }
@@ -157,7 +159,7 @@ public class Plante
     {
         if (Sante == EtatSante.Malade)
         {
-            Sante==EtatSante.EnBonneSante;
+            Sante = EtatSante.EnBonneSante;
             Console.WriteLine($"{Nom} a été soigné par {cause} ! Youpiiiii !");
         }
     }
@@ -170,8 +172,8 @@ public class Plante
 
     public void Fertiliser() // permet de fertiliser la plante (augmente de façon plus importante la croissance)
     {
-    Croissance += 0.2f;
-    Console.WriteLine($"{Nom} a été fertilisée 🌱 !");
+        Croissance += 0.2f;
+        Console.WriteLine($"{Nom} a été fertilisée 🌱 !");
     }
 
     public void Tailler() // permet de tailler la plante (réduit un peu la croissance mais améliore sa santé si elle est malade)
@@ -199,7 +201,7 @@ public class Plante
     {
         if (age >= EsperanceDeVie)
         {
-            Sante = EtatDeSante.Morte;
+            Sante = EtatSante.Morte;
             Console.WriteLine($"{Nom} a atteint la fin de sa vie. 🪦");
         }
     }
@@ -207,4 +209,4 @@ public class Plante
     {
         return $"Nom : {Nom}, Type : {TypePlante}, Santé : {Sante}, Croissance : {Croissance}";
     }
-
+}

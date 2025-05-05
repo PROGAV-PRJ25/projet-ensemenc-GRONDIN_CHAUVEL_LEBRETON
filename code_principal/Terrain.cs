@@ -29,11 +29,11 @@ public abstract class Terrain
         PlantesCultivees = new List<Plante> ();
         Lignes = lignes;
         Colonnes = colonnes;
+        TerrainVisuel = new int [Lignes, Colonnes]; // déclaration de la matrice de taille "Lignes*Colonnes" qui représente le terrain visuel
     }
 
     public int[,] InitialiserTerrainVisuel() // méthode qui permet d'initialiser le terrain
     {
-        TerrainVisuel = new int [Lignes,Colonnes]; // déclaration de la matrice de taille "Lignes*Colonnes" qui représente le terrain visuel
         for (int i = 0; i < Lignes; i++) // utilisation d'une boucle for pour parcourir toute la matrice
         {
             for(int j = 0; j < Colonnes; j++)
