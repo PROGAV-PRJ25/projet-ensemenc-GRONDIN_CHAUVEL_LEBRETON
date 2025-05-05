@@ -162,8 +162,49 @@ public class Plante
         }
     }
 
+    public void ExposerAuSoleil() // permet d'exposer la plante au soleil (augmente légèrement la croissance)
+    {
+        Croissance += 0.1f;
+        Console.WriteLine($"{Nom} a profité du soleil ☀️!");
+    }
+
+    public void Fertiliser() // permet de fertiliser la plante (augmente de façon plus importante la croissance)
+    {
+    Croissance += 0.2f;
+    Console.WriteLine($"{Nom} a été fertilisée 🌱 !");
+    }
+
+    public void Tailler() // permet de tailler la plante (réduit un peu la croissance mais améliore sa santé si elle est malade)
+    {
+        Croissance -= 0.1f;
+        if (Sante == EtatSante.Malade)
+        {
+            Sante = EtatSante.EnBonneSante;
+            Console.WriteLine($"{Nom} a été taillée et est maintenant en meilleure santé !");
+        }
+        else Console.WriteLine($"{Nom} a été taillée pour mieux pousser.");
+    }
+
+    public void Recolter() // permet de récolter la plante si elle est mature
+    {
+        if (Croissance >= 1.5f)
+        {
+            Console.WriteLine($"{Nom} a été récoltée avec succès !");
+            Sante = EtatSante.Morte;
+        }
+        else Console.WriteLine($"{Nom} n'est pas encore prête à être récoltée.);
+    }
+
+    public void VerifierFinDeVie(int age) // permet de vérifier que la plante est en fin de vie
+    {
+        if (age >= EsperanceDeVie)
+        {
+            Sante = EtatDeSante.Morte;
+            Console.WriteLine($"{Nom} a atteint la fin de sa vie. 🪦");
+        }
+    }
     public override string ToString()
     {
         return $"Nom : {Nom}, Type : {TypePlante}, Santé : {Sante}, Croissance : {Croissance}";
     }
-}
+
