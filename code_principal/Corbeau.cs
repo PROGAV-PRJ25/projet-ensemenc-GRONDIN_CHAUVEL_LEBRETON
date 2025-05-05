@@ -7,7 +7,7 @@ public class Corbeau : Obstacle
     {
         foreach (Plante plante in Univers.PlantesCultivees)
         {
-            if (plante.TypePlante == Type.Fruit)
+            if (plante.TypePlante == Type.Fruits)
             {
                 Console.Write(" 🐦‍⬛ ");
             }

@@ -124,7 +124,7 @@ public abstract class Terrain
         if (PeutAccueillir(plante)) // vérifie s'il y a assez d'espace pour accueillir une nouvelle plante
         {
             PlantesCultivees.Add(plante); // ajout d'une plante
-            plante.terrain = this;
+            plante.Terrain = this;
             PlacerPlanteSurTerrain(plante);
             Console.WriteLine($"Plante {plante.Nom} ajoutée au terrain {Nom}.");
         }
