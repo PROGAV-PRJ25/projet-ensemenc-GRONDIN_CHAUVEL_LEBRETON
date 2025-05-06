@@ -1,9 +1,8 @@
-public class Herbe: Plante 
+public abstract class Herbe: Plante 
 {
-    public Herbe() : base ("Bonne Herbe", "Les 4 saisons", TypePlante.Herbe = 3 , "Tout terrain",30f, 30f, 8f, 3, Sante.EnBonneSante = 0, 25) {}
-
-public override int EtatFinal()
-    {
-        return ;
-    }
+    public Herbe(string nom, string saisonPref, TypePlante type, string typeSolNecessaire,
+                float humiditeNecessaire, float temperatureNecessaire, int luminositeNecessaire,
+                int espaceNecessaire, int esperanceDeVie, float croissance = 0)
+        : base(nom, saisonPref, type, typeSolNecessaire, humiditeNecessaire, temperatureNecessaire,
+               luminositeNecessaire, espaceNecessaire, esperanceDeVie, croissance) {}
 }

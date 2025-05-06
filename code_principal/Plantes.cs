@@ -1,26 +1,26 @@
-public class Plante
+public abstract class Plante
 {
     public string Nom { get; set; } //pour différencier les différentes plantes 
-    public enum Type { Fruit, Legume, Fleur, Herbe, Champignon } //  1 = Fruit, 2 = Légume, 3 = Fleur,..
-    public Type TypePlante { get; private set; }
+    public enum TypePlante { Fruit, Legume, Fleur, Herbe, Champignon } //  0 = Fruit, 1 = Légume, 2 = Fleur,..
+    public TypePlante Type { get; private set; }
     public string SaisonPref { get; private set; }
     public string TypeSolNeccessaire { get; private set; }
     public float HumiditeNecessaire { get; private set; }
     public float TemperatureNecessaire { get; private set; }
     public int LuminositeNecessaire { get; private set; }
-    public int EspaceNecessaire { get; private set; } // Nécessaire permet de mettre en écidence que ce sont des conditions spécifiques à la plante  
-    public enum EtatSante {EnBonneSante,Malade,Morte} // pour différencier les différents états de la plante 
+    public int EspaceNecessaire { get; private set; } // "Necessaire" permet de mettre en évidence que ce sont des conditions spécifiques à la plante  
+    public enum EtatSante {EnBonneSante, Malade, Morte} // pour différencier les différents états de la plante 
     public EtatSante Sante {get; private set;}
     public int EsperanceDeVie { get; private set; }
-    public Terrain Terrain { get; private set; } // pas sur ?? List <Terrain>
+    public Terrain Terrain { get; set; } // association avec le terrain où est plantée la plante
     public float Croissance {get;private set;}
     private bool EstArrosee = false;
 
-    public Plante(string nom, string saisonPref, Type typePlante, string typeSolNecessaire, float humiditeNecessaire, float temperatureNecessaire, int luminositeNecessaire, int espaceNecessaire, string sante, int esperanceDeVie, float croissance = 0) // utilisation d'une constante t peu importe pour enum
+    public Plante(string nom, string saisonPref, TypePlante type, string typeSolNecessaire, float humiditeNecessaire, float temperatureNecessaire, int luminositeNecessaire, int espaceNecessaire, int esperanceDeVie, float croissance = 0) // utilisation d'une constante t peu importe pour enum
     {
         Nom = nom;
         SaisonPref = saisonPref;
-        TypePlante = typePlante;
+        Type = type;
         TypeSolNeccessaire = typeSolNecessaire;
         HumiditeNecessaire = humiditeNecessaire;
         TemperatureNecessaire = temperatureNecessaire;
@@ -35,7 +35,6 @@ public class Plante
     {
         int nbConditionsTotal = 6;
         int conditionsOk = 0;
-
         if (terrain.Saison == SaisonPref)
         {
             conditionsOk++;
@@ -65,6 +64,12 @@ public class Plante
 
     public void MettreAJourCroissance() // sert à faire évoluer la plante à chaque tour en fonction des conditions du terrain et si la plante a été arrosée 
     {
+        if (Terrain == null)
+        {
+            Console.WriteLine($"{Nom} n'est pas plantée dans un terrain.");
+            return;
+        }
+
         float pourcentageConditions = CroissanceSelonConditions(Terrain);
         if (pourcentageConditions < 50)
         {
@@ -109,11 +114,16 @@ public class Plante
 
     public void AfficherJauge()
     {
+        if (Terrain == null)
+        {
+            Console.WriteLine($"{Nom} n'est pas plantée dans un terrain.");
+            return;
+        }
+
         int totalVies = 10;
         float pourcentageConditions = CroissanceSelonConditions(Terrain);
         int Vies = (int)(pourcentageConditions * totalVies/100);
         string jauge = "";
-
         for (int i = 0; i < totalVies; i++)
         {
             if (i < Vies)
@@ -128,7 +138,7 @@ public class Plante
         Console.WriteLine($"Sante : {jauge} {pourcentageConditions}");
     }
 
-    public abstract int EtatFinal(){}   
+    public abstract int EtatFinal();  
 
     public void AfficherEvolutionPlantes()
     {
@@ -140,7 +150,7 @@ public class Plante
         {
             Console.WriteLine($"{Nom} est en croissance");
         }
-        if (Croissance == 1.5f)
+        if (Croissance >= 1.5f)
         {
             Console.WriteLine($"{Nom} est mature");
         }
@@ -194,7 +204,7 @@ public class Plante
             Console.WriteLine($"{Nom} a été récoltée avec succès !");
             Sante = EtatSante.Morte;
         }
-        else Console.WriteLine($"{Nom} n'est pas encore prête à être récoltée.);
+        else Console.WriteLine($"{Nom} n'est pas encore prête à être récoltée.");
     }
 
     public void VerifierFinDeVie(int age) // permet de vérifier que la plante est en fin de vie
@@ -207,6 +217,6 @@ public class Plante
     }
     public override string ToString()
     {
-        return $"Nom : {Nom}, Type : {TypePlante}, Santé : {Sante}, Croissance : {Croissance}";
+        return $"Nom : {Nom}, Type : {Type}, Santé : {Sante}, Croissance : {Croissance}";
     }
 }
