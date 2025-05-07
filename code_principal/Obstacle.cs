@@ -7,7 +7,7 @@ public abstract class Obstacle
     public float Gravite { get; set; } // 0 à 1
     public int DureeTours { get; set; }
     public Terrain Univers { get; set; } // importation de la classe Terrain pour pouvoir l'utiliser
-    private static Random random = new Random(); // pour le déplacement aléatoire
+    protected static Random rnd = new Random(); // pour le déplacement aléatoire
 
     public Obstacle(string nom, string type, string cible, string effet, float gravite, int dureeTours) // constructeur
     {

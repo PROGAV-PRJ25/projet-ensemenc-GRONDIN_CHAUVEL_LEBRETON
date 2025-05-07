@@ -5,12 +5,15 @@ public class Corbeau : Obstacle
 
      public override void Action()
     {
-        foreach (Plante plante in Univers.PlantesCultivees)
+        if (Univers != null && Univers.PlantesCultivees != null)
         {
-            if (plante.TypePlante == Type.Fruits)
+            foreach (Plante plante in Univers.PlantesCultivees)
+        {
+            if (plante != null && plante.Type == Plante.TypePlante.Fruit)
             {
                 Console.Write(" 🐦‍⬛ ");
             }
+        }
         }
     }
 }

@@ -7,18 +7,34 @@ public class PasDeGeant : Obstacle
 
     public override void Action()
     {
+        int positionX = rnd.Next (1,Univers.Lignes-1);
+        int positionY = rnd.Next (1,Univers.Colonnes-1);
         
-        Random random = new Random ();
-        int PositionX = random.Next (0,Univers.Lignes-1);
-        int PositionY = random.Next (0,Univers.Colonnes-1);
-        Univers.TerrainVisuel [PositionX,PositionY] = 6;
-        Univers.TerrainVisuel [PositionX+1,PositionY] = 6;
-        Univers.TerrainVisuel [PositionX,PositionY+1] = 6;
-        Univers.TerrainVisuel [PositionX-1,PositionY] = 6;
-        Univers.TerrainVisuel [PositionX,PositionY-1] = 6;
-        Univers.TerrainVisuel [PositionX+1,PositionY+1] = 6;
-        Univers.TerrainVisuel [PositionX-1,PositionY-1] = 6;
-        Univers.TerrainVisuel [PositionX+1,PositionY-1] = 6;
-        Univers.TerrainVisuel [PositionX-1,PositionY+1] = 6;
+        // Vérifications pour éviter les IndexOutOfRangeException
+        if (positionX >= 0 && positionX < Univers.Lignes && 
+            positionY >= 0 && positionY < Univers.Colonnes)
+        {
+            // On marque les cases du pas de géant
+            Univers.TerrainVisuel[positionX, positionY] = 6;
+
+            // On vérifie la validité de chaque position avant de la modifier
+            TryModifyTerrain(positionX + 1, positionY);
+            TryModifyTerrain(positionX, positionY + 1);
+            TryModifyTerrain(positionX - 1, positionY);
+            TryModifyTerrain(positionX, positionY - 1);
+            TryModifyTerrain(positionX + 1, positionY + 1);
+            TryModifyTerrain(positionX - 1, positionY - 1);
+            TryModifyTerrain(positionX + 1, positionY - 1);
+            TryModifyTerrain(positionX - 1, positionY + 1);
+        }
+    }
+
+    // Méthode auxiliaire pour vérifier et modifier le terrain si la position est valide
+    private void TryModifyTerrain(int x, int y)
+    {
+        if (x >= 0 && x < Univers.Lignes && y >= 0 && y < Univers.Colonnes)
+        {
+            Univers.TerrainVisuel[x, y] = 6;
+        }
     }
 }

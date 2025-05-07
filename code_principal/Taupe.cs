@@ -5,13 +5,18 @@ public class Taupe : Obstacle
 
     public override void Action()
     {
-        for (int i = 0; i<5; i++)
+        int nbTrous = 5; 
+
+        for (int i = 0; i<nbTrous; i++)
         {
-            Random random = new Random ();
-            int PositionX = random.Next (0,Univers.Lignes-1);
-            int PositionY = random.Next (0,Univers.Colonnes-1);
-            Univers.TerrainVisuel [PositionX,PositionY] = 7;
-            i++;
+            int positionX = rnd.Next (0,Univers.Lignes-1);
+            int positionY = rnd.Next (0,Univers.Colonnes-1);
+            // Vérification pour éviter les index out of range
+            if (positionX >= 0 && positionX < Univers.Lignes && 
+                positionY >= 0 && positionY < Univers.Colonnes)
+            {
+                Univers.TerrainVisuel[positionX, positionY] = 7; // 7 représente un tas de terre
+            }
         }
         
     }
