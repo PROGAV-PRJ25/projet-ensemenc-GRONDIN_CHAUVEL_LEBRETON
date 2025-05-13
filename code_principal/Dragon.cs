@@ -7,7 +7,7 @@ public class Dragon : Obstacle
     {
         foreach (Plante plante in Univers.PlantesCultivees)
         {
-            if (plante.TypePlante == Type.Fleur)
+            if (plante != null && plante.Type == Plante.TypePlante.Fleur)
             {
                 Console.Write(" 🔥 ");
             }

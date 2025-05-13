@@ -29,6 +29,7 @@ public abstract class Terrain
         PlantesCultivees = new List<Plante>();
         Lignes = lignes;
         Colonnes = colonnes;
+        TerrainVisuel = new int [Lignes, Colonnes]; // déclaration de la matrice de taille "Lignes*Colonnes" qui représente le terrain visuel
     }
 
     public string[,] InitialiserT() // méthode qui permet d'initialiser le terrain
@@ -181,7 +182,7 @@ public abstract class Terrain
         if (PeutAccueillir(plante)) // vérifie s'il y a assez d'espace pour accueillir une nouvelle plante
         {
             PlantesCultivees.Add(plante); // ajout d'une plante
-            plante.terrain = this;
+            plante.Terrain = this;
             PlacerPlanteSurTerrain(plante);
             Console.WriteLine($"Plante {plante.Nom} ajoutée au terrain {Nom}.");
         }
