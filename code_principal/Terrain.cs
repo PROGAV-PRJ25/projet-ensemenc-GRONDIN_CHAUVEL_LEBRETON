@@ -10,7 +10,6 @@ public abstract class Terrain
     public float Temperature { get; set; } // en °C
     public bool EstProtege { get; set; } // présence d'une serre, d'un filet, etc.
     public List<Plante> PlantesCultivees { get; set; }
-    public abstract string DescriptionTerrain { get; } // Description du terrain
 
     // création du terrain visuel
     public int Lignes {get; set;} 
@@ -18,11 +17,7 @@ public abstract class Terrain
     public int Colonnes {get; set;} 
     public int [,] TerrainVisuel {get; set;}
 
-<<<<<<< HEAD
-    public Terrain(string nom, float surface, string meteo, string typeSol, float humidite, float luminosite, float temperature, bool estProtege, int lignes = 15, int colonnes = 15) // constructeur
-=======
     public Terrain (string nom, float surface, string meteo, string typeSol, float humidite, float precipitations, float luminosite, float temperature, bool estProtege, int lignes = 15, int colonnes = 15) // constructeur
->>>>>>> 381cf8b8cbee07f40365b50ae00201b719b18f86
     {
         Nom = nom;
         Surface = surface;
@@ -244,8 +239,6 @@ public abstract class Terrain
     public override string ToString() // méthode d'affichage textuel des terrains
     {
         string resultat = $"Terrain : {Nom} \n"
-                        + $"Type de sol : {TypeSol} \n"
-                        + $"Description : {DescriptionTerrain}\n"
                         + $"Surface totale : {Surface} m² \n"
                         + $"Surface libre : {SurfaceLibre()} m²"
                         + $"Humidité : {Humidite}% \n"
