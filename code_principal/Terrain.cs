@@ -2,9 +2,10 @@ public abstract class Terrain
 {
     public string Nom { get; set; } // pour différencier les différents terrains
     public float Surface { get; set; } // en m²
-    public string Saison { get; set; } // printemps, été, automne, hiver
+    public string Meteo { get; set; } // printemps, été, automne, hiver
     public string TypeSol { get; set; } // argileux, sableux, limoneux, forestier.
     public float Humidite { get; set; } // en pourcentage
+    public float Precipitations { get; set; } // en mm
     public float Luminosite { get; set; } // en %
     public float Temperature { get; set; } // en °C
     public bool EstProtege { get; set; } // présence d'une serre, d'un filet, etc.
@@ -12,17 +13,19 @@ public abstract class Terrain
     public abstract string DescriptionTerrain { get; } // Description du terrain
 
     // création du terrain visuel
-    public int Lignes { get; set; }
-    public int Colonnes { get; set; }
-    public string[,] T { get; set; }
+    public int Lignes {get; set;} 
+    
+    public int Colonnes {get; set;} 
+    public int [,] TerrainVisuel {get; set;}
 
-    public Terrain(string nom, float surface, string saison, string typeSol, float humidite, float luminosite, float temperature, bool estProtege, int lignes = 15, int colonnes = 15) // constructeur
+    public Terrain (string nom, float surface, string meteo, string typeSol, float humidite, float precipitations, float luminosite, float temperature, bool estProtege, int lignes = 15, int colonnes = 15) // constructeur
     {
         Nom = nom;
         Surface = surface;
-        Saison = saison;
+        Meteo = meteo;
         TypeSol = typeSol;
         Humidite = humidite;
+        Precipitations = precipitations;
         Luminosite = luminosite;
         Temperature = temperature;
         EstProtege = estProtege;
@@ -207,28 +210,31 @@ public abstract class Terrain
         }
     }
 
-    // mise à jour de la température en fonction de la saison
+    // mise à jour de la température en fonction de la météo
     public virtual void MiseAJour()
     {
-        switch (Saison)
+        switch (Meteo)
         {
-            case "Printemps":
-                Temperature = 15 + new Random().Next(-5, 6);
-                break;
-            case "Eté":
-                Temperature = 25 + new Random().Next(5, 6);
-                break;
-            case "Automne":
-                Temperature = 10 + new Random().Next(-5, 6);
-                break;
-            case "Hiver":
-                Temperature = 0 + new Random().Next(-10, 6);
-                break;
+            case "Tempéré" :
+            Temperature = 15 + new Random().Next(-5,6);
+            break;
+            case "Chaud" :
+            Temperature = 25 + new Random().Next(5,6);
+            break;
+            case "Nuageux" :
+            Temperature = 10 + new Random().Next(-5,6);
+            break;
+            case "Froid" : 
+            Temperature = 0 + new Random().Next(-10,6);
+            break;
         }
         // mise à jour de l'humidité (peut varier aléatoirement)
-        Humidite += new Random().Next(-10, 11);
-        Humidite = Math.Max(0, Math.Min(100, Humidite)); // limitation entre 0 et 100%
-        Console.WriteLine($"[{Saison}] Température : {Temperature}°C, Humdité : {Humidite}%");
+        Humidite += new Random().Next(-10,11);
+        Humidite = Math.Max(0,Math.Min(100,Humidite)); // limitation entre 0 et 100%
+        Precipitations += new Random().Next(-20,20);
+        Humidite = Math.Max(0,Math.Min(100,Precipitations)); // limitation entre 0 et 100mm
+
+        Console.WriteLine($"[{Meteo}] Température : {Temperature}°C, Humdité : {Humidite}%, Précipitations : {Precipitations}mm");
     }
 
     public override string ToString() // méthode d'affichage textuel des terrains
@@ -241,8 +247,8 @@ public abstract class Terrain
                         + $"Humidité : {Humidite}% \n"
                         + $"Luminosité : {Luminosite}% \n"
                         + $"Température : {Temperature}°C \n"
-                        + $"Saison : {Saison}\n"
-                        + $"Protégé :" + (EstProtege ? "Oui" : "Non") + "\n"
+                        + $"Météo : {Meteo}\n"
+                        + $"Protégé :" + (EstProtege? "Oui" : "Non") + "\n"
                         + $"Plantes cultivés : \n";
 
         if (PlantesCultivees.Count == 0)
