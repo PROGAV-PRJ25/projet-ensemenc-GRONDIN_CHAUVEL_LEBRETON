@@ -3,7 +3,7 @@ public abstract class Plante
     public string Nom { get; set; } //pour différencier les différentes plantes 
     public enum TypePlante { Fruit, Legume, Fleur, Herbe, Champignon } //  0 = Fruit, 1 = Légume, 2 = Fleur,..
     public TypePlante Type { get; private set; }
-    public string SaisonPref { get; private set; }
+    public string MeteoPref { get; private set; }
     public string TypeSolNeccessaire { get; private set; }
     public float HumiditeNecessaire { get; private set; }
     public float TemperatureNecessaire { get; private set; }
@@ -16,10 +16,10 @@ public abstract class Plante
     public float Croissance {get;private set;}
     private bool EstArrosee = false;
 
-    public Plante(string nom, string saisonPref, TypePlante type, string typeSolNecessaire, float humiditeNecessaire, float temperatureNecessaire, int luminositeNecessaire, int espaceNecessaire, int esperanceDeVie, float croissance = 0) // utilisation d'une constante t peu importe pour enum
+    public Plante(string nom, string meteoPref, TypePlante type, string typeSolNecessaire, float humiditeNecessaire, float temperatureNecessaire, int luminositeNecessaire, int espaceNecessaire, int esperanceDeVie, float croissance = 0) // utilisation d'une constante t peu importe pour enum
     {
         Nom = nom;
-        SaisonPref = saisonPref;
+        MeteoPref = meteoPref;
         Type = type;
         TypeSolNeccessaire = typeSolNecessaire;
         HumiditeNecessaire = humiditeNecessaire;
@@ -35,7 +35,7 @@ public abstract class Plante
     {
         int nbConditionsTotal = 6;
         int conditionsOk = 0;
-        if (terrain.Saison == SaisonPref)
+        if (terrain.Meteo == MeteoPref)
         {
             conditionsOk++;
         }
