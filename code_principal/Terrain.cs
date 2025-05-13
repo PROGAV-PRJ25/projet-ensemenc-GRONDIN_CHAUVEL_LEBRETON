@@ -10,13 +10,13 @@ public abstract class Terrain
     public bool EstProtege { get; set; } // présence d'une serre, d'un filet, etc.
     public List<Plante> PlantesCultivees { get; set; }
     public abstract string DescriptionTerrain { get; } // Description du terrain
-    // création du terrain visuel
-    public int Lignes {get; set;} 
-    
-    public int Colonnes {get; set;} 
-    public int [,] TerrainVisuel {get; set;}
 
-    public Terrain (string nom, float surface, string saison, string typeSol, float humidite, float luminosite, float temperature, bool estProtege, int lignes = 15, int colonnes = 15) // constructeur
+    // création du terrain visuel
+    public int Lignes { get; set; }
+    public int Colonnes { get; set; }
+    public string[,] T { get; set; }
+
+    public Terrain(string nom, float surface, string saison, string typeSol, float humidite, float luminosite, float temperature, bool estProtege, int lignes = 15, int colonnes = 15) // constructeur
     {
         Nom = nom;
         Surface = surface;
@@ -26,45 +26,102 @@ public abstract class Terrain
         Luminosite = luminosite;
         Temperature = temperature;
         EstProtege = estProtege;
-        PlantesCultivees = new List<Plante> ();
+        PlantesCultivees = new List<Plante>();
         Lignes = lignes;
         Colonnes = colonnes;
     }
 
-    public int[,] InitialiserTerrainVisuel() // méthode qui permet d'initialiser le terrain
+    public string[,] InitialiserT() // méthode qui permet d'initialiser le terrain
     {
-        TerrainVisuel = new int [Lignes,Colonnes]; // déclaration de la matrice de taille "Lignes*Colonnes" qui représente le terrain visuel
-        for (int i = 0; i < Lignes; i++) // utilisation d'une boucle for pour parcourir toute la matrice
+        T = new string[Lignes, Colonnes]; // déclaration de la matrice de taille "Lignes*Colonnes" qui représente le terrain visuel
+
+        // Types de sol pour les 4 zones
+        string[,] zoneTypes = new string[2, 2]
         {
-            for(int j = 0; j < Colonnes; j++)
+            { "Sableux", "Argileux" },
+            { "Limoneux", "Forestier" }
+        };
+
+        // Remplir le plateau en fonction des zones
+        for (int i = 0; i < Lignes; i++)
+        {
+            for (int j = 0; j < Colonnes; j++)
             {
-                TerrainVisuel[i, j] = 0 ; // le terrain est rempli par des 0
+                int zoneI = i < Lignes / 2 ? 0 : 1;
+                int zoneJ = j < Colonnes / 2 ? 0 : 1;
+                T[i, j] = zoneTypes[zoneI, zoneJ];
             }
         }
-        return TerrainVisuel; // retour d'une matrice 2D remplie de 0
+
+        // Dimensions visuelles des cases
+        int largeurCases = 5;
+        int hauteurCases = 2;
+
+        // Affichage du plateau
+        for (int i = 0; i < Lignes; i++)
+        {
+            // Bord supérieur des cases
+            for (int j = 0; j < Colonnes; j++)
+                Console.Write("+" + new string('─', largeurCases));
+            Console.WriteLine("+");
+
+            // Affichage vertical de la case (hauteur)
+            for (int h = 0; h < hauteurCases; h++)
+            {
+                for (int j = 0; j < Colonnes; j++)
+                {
+                    Console.Write("|");
+                    Console.BackgroundColor = GetColor(T[i, j]);
+                    Console.Write(new string(' ', largeurCases));
+                }
+
+                Console.ResetColor();
+            }
+            Console.WriteLine("|");
+        }
+
+        // Dernière ligne de bas du plateau
+        for (int j = 0; j < Colonnes; j++)
+            Console.Write("+" + new string('─', largeurCases));
+        Console.WriteLine("+");
+
+
+        // Détermination de la couleur selon le type de sol
+        static ConsoleColor GetColor(string type)
+        {
+            return type switch
+            {
+                "Sableux" => ConsoleColor.Yellow,
+                "Argileux" => ConsoleColor.Gray,
+                "Limoneux" => ConsoleColor.DarkRed,
+                "Forestier" => ConsoleColor.Green,
+                _ => ConsoleColor.Black
+            };
+        }
+
+        return T;
     }
 
-    public void AfficherTerrainVisuel(int[,] terrainVisuel) // méthode qui permet d'afficher le terrain visuel
+    public void AfficherT(int[,] T) // méthode qui permet d'afficher le terrain visuel
     {
-        if (TerrainVisuel == null)
+        if (T == null)
         {
-            InitialiserTerrainVisuel();
+            InitialiserT();
         }
 
         Console.WriteLine($"Terrain : {Nom} ({TypeSol})");
-        Console.WriteLine("┌" + new string('─', Colonnes * 3) + "┐");
 
-        for (int i = 0; i < terrainVisuel.GetLength(0); i++) // boucle for permet de parcourir toutes les lignes de la matrice
+        for (int i = 0; i < T.GetLength(0); i++) // boucle for permet de parcourir toutes les lignes de la matrice
         {
             Console.Write("│");
-            for (int j = 0; j < terrainVisuel.GetLength(1); j++) // boucle for permet de parcourir toutes les colonnes de la matrice
+            for (int j = 0; j < T.GetLength(1); j++) // boucle for permet de parcourir toutes les colonnes de la matrice
             {
-                switch (terrainVisuel[i, j]) // choix d'un switch pour éviter un grand nombre de répétition de if
+                switch (T[i, j]) // choix d'un switch pour éviter un grand nombre de répétition de if
                 {
                     case 0: // terrain vide
                         if (TypeSol == "Sableux") Console.Write(" 🟨 ");
-                        else if (TypeSol == "Argileux") Console.Write(" 🟫 ");
-                        else if (TypeSol == "Limoneux") Console.Write(" 🟧 ");
+                        else if (TypeSol == "Argileux") Console.Write(" 🟧 ");
+                        else if (TypeSol == "Limoneux") Console.Write(" 🟫 ");
                         else Console.Write(" 🟩 ");
                         break;
                     case 1: // semis
@@ -103,7 +160,7 @@ public abstract class Terrain
         }
         Console.WriteLine("└" + new string('─', Colonnes * 3) + "┘");
     }
-    
+
     public virtual bool PeutAccueillir(Plante plante) // méthode qui permet de gérer le nombre de plantes que le terrain peut accueillir
     {
         return plante.EspaceNecessaire <= SurfaceLibre();
@@ -118,8 +175,8 @@ public abstract class Terrain
         }
         return Surface - occupee;
     }
-    
-    public void AjouterPlante (Plante plante) // méthode qui permet d'ajouter une plante au terrain
+
+    public void AjouterPlante(Plante plante) // méthode qui permet d'ajouter une plante au terrain
     {
         if (PeutAccueillir(plante)) // vérifie s'il y a assez d'espace pour accueillir une nouvelle plante
         {
@@ -131,9 +188,9 @@ public abstract class Terrain
         else Console.WriteLine($"Pas assez de place pour planter {plante.Nom} sur le terrain {Nom}.");
     }
 
-    protected virtual void PlacerPlanteSurTerrain (Plante plante)
+    protected virtual void PlacerPlanteSurTerrain(Plante plante)
     {
-        Random random= new Random();
+        Random random = new Random();
         bool placee = false;
 
         while (!placee)
@@ -141,9 +198,9 @@ public abstract class Terrain
             int x = random.Next(0, Lignes);
             int y = random.Next(0, Colonnes);
 
-            if (TerrainVisuel[x,y] == 0)
+            if (T[x, y] == 0)
             {
-                TerrainVisuel [x,y] = 1; // représente un semis
+                T[x, y] = 1; // représente un semis
                 placee = true;
             }
         }
@@ -154,22 +211,22 @@ public abstract class Terrain
     {
         switch (Saison)
         {
-            case "Printemps" :
-            Temperature = 15 + new Random().Next(-5,6);
-            break;
-            case "Eté" :
-            Temperature = 25 + new Random().Next(5,6);
-            break;
-            case "Automne" :
-            Temperature = 10 + new Random().Next(-5,6);
-            break;
-            case "Hiver" : 
-            Temperature = 0 + new Random().Next(-10,6);
-            break;
+            case "Printemps":
+                Temperature = 15 + new Random().Next(-5, 6);
+                break;
+            case "Eté":
+                Temperature = 25 + new Random().Next(5, 6);
+                break;
+            case "Automne":
+                Temperature = 10 + new Random().Next(-5, 6);
+                break;
+            case "Hiver":
+                Temperature = 0 + new Random().Next(-10, 6);
+                break;
         }
         // mise à jour de l'humidité (peut varier aléatoirement)
-        Humidite += new Random().Next(-10,11);
-        Humidite = Math.Max(0,Math.Min(100,Humidite)); // limitation entre 0 et 100%
+        Humidite += new Random().Next(-10, 11);
+        Humidite = Math.Max(0, Math.Min(100, Humidite)); // limitation entre 0 et 100%
         Console.WriteLine($"[{Saison}] Température : {Temperature}°C, Humdité : {Humidite}%");
     }
 
@@ -184,12 +241,12 @@ public abstract class Terrain
                         + $"Luminosité : {Luminosite}% \n"
                         + $"Température : {Temperature}°C \n"
                         + $"Saison : {Saison}\n"
-                        + $"Protégé :" + (EstProtege? "Oui" : "Non") + "\n"
+                        + $"Protégé :" + (EstProtege ? "Oui" : "Non") + "\n"
                         + $"Plantes cultivés : \n";
 
-        if (PlantesCultivees.Count == 0) 
+        if (PlantesCultivees.Count == 0)
         {
-        resultat += " -Aucune plante pour le moment.\n";
+            resultat += " -Aucune plante pour le moment.\n";
         }
         else
         {
@@ -201,3 +258,7 @@ public abstract class Terrain
         return resultat;
     }
 }
+
+
+
+
