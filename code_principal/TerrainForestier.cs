@@ -2,7 +2,7 @@ public class TerrainForestier : Terrain
 {
      public override string DescriptionTerrain => "Terrain forestier, ombragé et riche en matières organiques.";
 
-     public TerrainForestier () : base("Terrain forestier", 225f, "Automne", "Forestier", 65f, 40f, 16f, false, 15, 15)
+     public TerrainForestier () : base("Terrain forestier", 225f, "Automne", "Forestier", 65f, 50f, 40f, 16f, false, 15, 15)
                             {
                                 TypeSol = "Forestier";
                             }
