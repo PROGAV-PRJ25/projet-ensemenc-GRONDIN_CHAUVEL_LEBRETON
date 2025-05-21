@@ -1,8 +1,6 @@
 public class TerrainSableux : Terrain
 {
-    public override string DescriptionTerrain => "Terrain sableux, drainant et chaud";
-
-    public TerrainSableux () : base("Terrain sableux", 225f, "Eté", "Sableux", 30f, 80f, 22f, false, 15, 15)
+    public TerrainSableux () : base("Terrain sableux", 225f, "Eté", "Sableux", 30f, 20f, 80f, 22f, false, 15, 15)
                             {
                                 TypeSol = "Sableux";
                             }
