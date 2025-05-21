@@ -1,8 +1,6 @@
 public class TerrainArgileux : Terrain
 {
-    public override string DescriptionTerrain => "Terrain argileux, riche en nutriments mais drainant mal.";
-
-    public TerrainArgileux () : base("Terrain argileux", 225f, "Printemps", "Argileux", 70f, 60f, 18f, false, 15, 15)
+    public TerrainArgileux () : base("Terrain argileux", 225f, "Printemps", "Argileux", 70f, 3f, 60f, 18f, false, 15, 15)
                             {
                                 TypeSol = "Argileux";
                             }
