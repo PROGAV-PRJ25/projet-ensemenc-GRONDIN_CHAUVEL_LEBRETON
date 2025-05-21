@@ -10,13 +10,12 @@ public abstract class Terrain
     public float Temperature { get; set; } // en °C
     public bool EstProtege { get; set; } // présence d'une serre, d'un filet, etc.
     public List<Plante> PlantesCultivees { get; set; }
-    public abstract string DescriptionTerrain { get; } // Description du terrain
 
     // création du terrain visuel
     public int Lignes {get; set;} 
     
     public int Colonnes {get; set;} 
-    public int [,] TerrainVisuel {get; set;}
+    public int [,] T{get; set;}
 
     public Terrain (string nom, float surface, string meteo, string typeSol, float humidite, float precipitations, float luminosite, float temperature, bool estProtege, int lignes = 15, int colonnes = 15) // constructeur
     {
@@ -32,7 +31,7 @@ public abstract class Terrain
         PlantesCultivees = new List<Plante>();
         Lignes = lignes;
         Colonnes = colonnes;
-        TerrainVisuel = new int [Lignes, Colonnes]; // déclaration de la matrice de taille "Lignes*Colonnes" qui représente le terrain visuel
+        T = new int [Lignes, Colonnes]; // déclaration de la matrice de taille "Lignes*Colonnes" qui représente le terrain visuel
     }
 
     public string[,] InitialiserT() // méthode qui permet d'initialiser le terrain
@@ -240,8 +239,6 @@ public abstract class Terrain
     public override string ToString() // méthode d'affichage textuel des terrains
     {
         string resultat = $"Terrain : {Nom} \n"
-                        + $"Type de sol : {TypeSol} \n"
-                        + $"Description : {DescriptionTerrain}\n"
                         + $"Surface totale : {Surface} m² \n"
                         + $"Surface libre : {SurfaceLibre()} m²"
                         + $"Humidité : {Humidite}% \n"
