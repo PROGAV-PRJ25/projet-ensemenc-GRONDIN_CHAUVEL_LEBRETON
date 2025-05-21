@@ -18,11 +18,7 @@ public abstract class Terrain
     public int Colonnes {get; set;} 
     public int [,] TerrainVisuel {get; set;}
 
-<<<<<<< HEAD
-    public Terrain(string nom, float surface, string meteo, string typeSol, float humidite, float luminosite, float temperature, bool estProtege, int lignes = 15, int colonnes = 15) // constructeur
-=======
     public Terrain (string nom, float surface, string meteo, string typeSol, float humidite, float precipitations, float luminosite, float temperature, bool estProtege, int lignes = 15, int colonnes = 15) // constructeur
->>>>>>> 381cf8b8cbee07f40365b50ae00201b719b18f86
     {
         Nom = nom;
         Surface = surface;
