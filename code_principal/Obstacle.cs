@@ -6,8 +6,7 @@ public abstract class Obstacle
     public int DureeTours { get; set; }
     protected static Random rnd = new Random();
 
-    public Obstacle(string nom, string type, string effet, int dureeTours,
-                    bool affectePlantes = false, bool affecteTerrain = false)
+    public Obstacle(string nom, string type, string effet, int dureeTours)
     {
         Nom = nom;
         Type = type;
