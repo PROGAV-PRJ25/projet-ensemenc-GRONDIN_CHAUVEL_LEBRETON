@@ -111,16 +111,16 @@ public abstract class Terrain
                         break;
                     case 16: // arbre
                         Console.Write("🌹");
-                        break;   
+                        break;
                     case 17: // arbre
                         Console.Write("🥬");
-                        break; 
+                        break;
                     case 18: // arbre
                         Console.Write("🍅");
-                        break;    
+                        break;
                     case 19: // arbre
                         Console.Write("🌻");
-                        break;   
+                        break;
                     default:
                         Console.Write(" · ");
                         break;
