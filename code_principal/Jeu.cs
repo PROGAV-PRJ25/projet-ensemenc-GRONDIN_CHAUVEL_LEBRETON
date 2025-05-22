@@ -33,13 +33,7 @@ public class Jeu
     public Random Random => random;
     public int AgePlantes => agePlantes;
 
-    public Jeu()
-    {
-        // Initialisation des modes de jeu
-        modesDeJeu.Add("Classique", new ModeClassique());
-        modesDeJeu.Add("Urgence", new ModeUrgence());
-        modeActuel = modesDeJeu["Classique"];
-    }
+    
 
     public void Demarrer()
     {
@@ -88,11 +82,11 @@ public class Jeu
         Console.Clear();
     }
 
-    private void InitialiserSemences()
+    private void InitialiserSemence()
     {
         // Ajouter les semences de base au joueur
         plantesPossedees.Add(new Carottes());
-        plantesPossedees.Add(new Tomates());
+        plantesPossedees.Add(new Tomate());
         plantesPossedees.Add(new Salades());
         plantesPossedees.Add(new Rose());
         plantesPossedees.Add(new Fraise());
@@ -564,9 +558,9 @@ public class Jeu
             for (int j = 0; j < terrainActuel.Colonnes; j++)
             {
                 // 6 = pas de géant, 7 = tas de terre (taupe)
-                if (terrainActuel.TerrainVisuel[i, j] == 6 || terrainActuel.TerrainVisuel[i, j] == 7)
+                if (terrainActuel.T[i, j] == 6 || terrainActuel.T[i, j] == 7)
                 {
-                    terrainActuel.TerrainVisuel[i, j] = 0; // Remise à 0 (sol normal)
+                    terrainActuel.T[i, j] = 0; // Remise à 0 (sol normal)
                 }
             }
         }
