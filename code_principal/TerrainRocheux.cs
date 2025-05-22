@@ -1,4 +1,4 @@
-public class TerrainRocheux : Terrain
+/*public class TerrainRocheux : Terrain
 {
     public override string DescriptionTerrain => "Terrain rocheux avec peu de terre";
 
@@ -31,7 +31,5 @@ public class TerrainRocheux : Terrain
         }
         return TerrainVisuel;
     }
-
-    
-    
 }
+*/

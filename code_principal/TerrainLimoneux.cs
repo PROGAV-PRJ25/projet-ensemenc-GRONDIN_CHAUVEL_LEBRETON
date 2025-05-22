@@ -1,4 +1,4 @@
-public class TerrainLimoneux : Terrain
+/*public class TerrainLimoneux : Terrain
 {
     public override string DescriptionTerrain => "Terrain limoneux, équilibré et fertile.";
 
@@ -12,3 +12,4 @@ public class TerrainLimoneux : Terrain
         return (plante.EspaceNecessaire*0.9f) <= SurfaceLibre; // 10% d'espace en moins requis
     }
 }
+*/
