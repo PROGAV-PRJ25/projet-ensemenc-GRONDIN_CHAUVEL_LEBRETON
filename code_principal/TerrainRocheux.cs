@@ -31,8 +31,5 @@
         }
         return TerrainVisuel;
     }
-
-    
-    
 }
 */
