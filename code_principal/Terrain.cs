@@ -95,31 +95,31 @@ public abstract class Terrain
                         Console.Write(" 🍓");
                         break;
                     case 11: // arbre
-                        Console.Write("🥕");
+                        Console.Write(" 🥕 ");
                         break;
                     case 12: // arbre
-                        Console.Write("🍄");
+                        Console.Write(" 🍄 ");
                         break;
                     case 13: // arbre
-                        Console.Write("🍆 ");
+                        Console.Write(" 🍆 ");
                         break;
                     case 14: // arbre
-                        Console.Write("🍉");
+                        Console.Write(" 🍉 ");
                         break;
                     case 15: // arbre
-                        Console.Write("🌶️");
+                        Console.Write(" 🌶️ ");
                         break;
                     case 16: // arbre
-                        Console.Write("🌹");
+                        Console.Write(" 🌹 ");
                         break;
                     case 17: // arbre
-                        Console.Write("🥬");
+                        Console.Write(" 🥬 ");
                         break;
                     case 18: // arbre
-                        Console.Write("🍅");
+                        Console.Write(" 🍅 ");
                         break;
                     case 19: // arbre
-                        Console.Write("🌻");
+                        Console.Write(" 🌻 ");
                         break;
                     default:
                         Console.Write(" · ");
