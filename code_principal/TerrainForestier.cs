@@ -1,31 +1,20 @@
-/*public class TerrainForestier : Terrain
+public class TerrainForestier : Terrain
 {
-     public override string DescriptionTerrain => "Terrain forestier, ombragé et riche en matières organiques.";
 
-     public TerrainForestier () : base("Terrain forestier", 225f, "Automne", "Forestier", 65f, 40f, 16f, false, 15, 15)
-                            {
-                                TypeSol = "Forestier";
-                            }
-
-    public override void MiseAJour()
+    public TerrainForestier() : base("Terrain forestier", 225f, "Automne", "Forestier", 65f, 40f, 16f, 12f, false, 15, 15)
     {
-        base.MiseAJour();
-        Temperature = Math.Max(5, Math.Min(22, Temperature)); // température plus stable
-        Luminosite = Math.Min(50, Luminosite); // luminosité plus réduite
+        TypeSol = "Forestier";
     }
-
-    public new int[,] InitialiserTerrainVisuel()
+    public override void InitialiserT()
     {
-        TerrainVisuel = base.InitialiserTerrainVisuel();
+        base.InitialiserT();
         Random random = new Random();
-        int nbArbres = random.Next(Lignes*Colonnes / 20, Lignes*Colonnes/10);
+        int nbArbres = random.Next(Lignes * Colonnes / 20, Lignes * Colonnes / 10);
 
-        for (int i = 0; i<nbArbres; i++)
+        for (int i = 0; i < nbArbres; i++)
         {
-            int x = random.Next(0,Lignes);
-            int y = random.Next(0,Colonnes);
+            int x = random.Next(0, Lignes);
+            int y = random.Next(0, Colonnes);
         }
-        return TerrainVisuel;
     }
 }
-*/
