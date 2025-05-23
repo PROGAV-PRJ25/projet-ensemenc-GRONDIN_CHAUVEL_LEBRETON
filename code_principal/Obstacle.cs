@@ -1,29 +1,29 @@
-public abstract class Obstacle
+public abstract class Obstacle 
 {
     public string Nom { get; set; }
     public string Type { get; set; } // "animal", "intempérie", "maladie", etc.
+    public bool AffecteTerrain { get; set; }
     public string Effet { get; set; }
     public int DureeTours { get; set; }
+    public Terrain Univers { get; set; }
     protected static Random rnd = new Random();
 
-    public Obstacle(string nom, string type, string effet, int dureeTours)
+    public Obstacle(string nom, string type, string effet, int dureeTours,
+                    bool affectePlantes = false, bool affecteTerrain = false)
     {
         Nom = nom;
         Type = type;
         Effet = effet;
         DureeTours = dureeTours;
-
+        AffecteTerrain = affecteTerrain;
     }
 
-<<<<<<< HEAD
     public void DefinirUnivers(Terrain terrain)
     {
         Univers = terrain;
+    }
 
     public abstract void Action();
-=======
-    public abstract void Action(Plante plante);
->>>>>>> 70d6252adc914722dbcc8ee1c4ce9a8681824a3d
 
     public override string ToString()
     {
