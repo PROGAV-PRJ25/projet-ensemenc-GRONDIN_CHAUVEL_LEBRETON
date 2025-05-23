@@ -165,6 +165,7 @@ public abstract class Terrain
         }
         else Console.WriteLine($"Pas assez de place pour planter {plante.Nom} sur le terrain {Nom}.");
     }
+    
     protected virtual void PlacerPlanteSurTerrain(Plante plante) // ajout de l'enregistrement des coordonnées des plantes sur le terrain // permet de modifier précisément la case où la plante a été planté pour état final par exemple 
     {
         Random random = new Random();
