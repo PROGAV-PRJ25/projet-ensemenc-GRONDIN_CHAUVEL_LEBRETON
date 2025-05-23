@@ -7,6 +7,35 @@ public class Texte
         Nom = nom;
     }
 
+     public void DefinirTerrain()
+    {
+        Console.WriteLine("Voici les différents types de terrains possibles :");
+        Console.WriteLine("");
+        Console.WriteLine("1. Terrain Argileux");
+        Console.WriteLine("   Description: Sol riche en nutriments mais drainant mal.");
+        Console.WriteLine("   Avantages: Riche et fertile, idéal pour les légumes-racines.");
+        Console.WriteLine("   Inconvénients: Peut être lourd et compact quand il est mouillé.\n");
+        Console.WriteLine("");  
+        Console.WriteLine("2. Terrain Limoneux");
+        Console.WriteLine("   Description: Sol équilibré et fertile, le meilleur pour un potager traditionnel.");
+        Console.WriteLine("   Avantages: S'adapte à la plupart des plantes cultivées.");
+        Console.WriteLine("   Inconvénients: Peut nécessiter un entretien régulier.\n");
+        Console.WriteLine("");
+        Console.WriteLine("3. Terrain Forestier");
+        Console.WriteLine("   Description: Sol ombragé et riche en matière organique.");
+        Console.WriteLine("   Avantages: Excellent pour les plantes d'ombre et les baies sauvages.");
+        Console.WriteLine("   Inconvénients: Peu de lumière et compétition avec les racines d'arbres.\n");
+        Console.WriteLine("");
+        Console.WriteLine("4. Terrain Sableux");
+        Console.WriteLine("   Description: Sol drainant et chaud, idéal pour les plantes méditerranéennes.");
+        Console.WriteLine("   Avantages: Bonne croissance pour les plantes qui aiment la chaleur et le sol sec.");
+        Console.WriteLine("   Inconvénients: Retient peu l'eau et les nutriments.\n");
+        Console.WriteLine("");
+        Console.Write("Cliquez sur le numéro de votre choix (1-4)");
+        Console.WriteLine("");
+       
+    }
+
     public void PresenterFruits()
     {
         Console.WriteLine("=== Voici la liste des fruits que tu peux planter ===");

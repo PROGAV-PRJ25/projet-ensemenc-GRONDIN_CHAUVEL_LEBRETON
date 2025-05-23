@@ -2,14 +2,13 @@ public class ModeClassique
 {
     private Random ramdom = new Random();
 
-    public void LancerPartie(Terrain terrain)
+    public void LancerPartie(Terrain terrain, Texte t)
     {
-        Texte.PresenterFleurs();
-
+        t.PresenterFleurs();
         ConsoleKey clic = Console.ReadKey().Key;
         Console.WriteLine();
 
-        Plante fleurChoisie = null;
+        Plante? fleurChoisie = null;
 
         switch (clic)
         {
@@ -27,6 +26,58 @@ public class ModeClassique
                 return;
         }
         terrain.AjouterPlante(fleurChoisie);
+        terrain.AfficherT();
+
+
+        t.PresenterFruits();
+        ConsoleKey click = Console.ReadKey().Key;
+        Plante? fruitChoisi = null;
+
+        switch (click)
+        {
+            case ConsoleKey.D1:
+                fruitChoisi = new Fraise();
+                break;
+            case ConsoleKey.D2:
+                fruitChoisi = new Pasteque();
+                break;
+            case ConsoleKey.D3:
+                fruitChoisi = new Pomme();
+                break;
+            default:
+                Console.WriteLine("Action invalide");
+                return;
+        }
+        terrain.AjouterPlante(fruitChoisi);
+        terrain.AfficherT();
+
+
+        t.PresenterLegumes();
+        ConsoleKey clicky = Console.ReadKey().Key;
+        Plante? legumeChoisi = null;
+
+        switch (clicky)
+        {
+            case ConsoleKey.D1:
+                legumeChoisi = new Aubergine();
+                break;
+            case ConsoleKey.D2:
+                legumeChoisi = new Carotte();
+                break;
+            case ConsoleKey.D3:
+                legumeChoisi = new Piment();
+                break;
+            case ConsoleKey.D4:
+                legumeChoisi = new Salade();
+                break;
+            case ConsoleKey.D5:
+                legumeChoisi = new Tomate();
+                break;
+            default:
+                Console.WriteLine("Action invalide");
+                return;
+        }
+        terrain.AjouterPlante(legumeChoisi);
         terrain.AfficherT();
 
 
