@@ -171,7 +171,7 @@ public abstract class Plante
         if (Sante == EtatSante.Malade)
         {
             Sante = EtatSante.EnBonneSante;
-            Console.WriteLine($"{Nom} a été soigné par {cause} ! Youpiiiii !");
+            Console.WriteLine($"{Nom} a été soigné.e par {cause} ! Youpiiiii !");
         }
     }
 
