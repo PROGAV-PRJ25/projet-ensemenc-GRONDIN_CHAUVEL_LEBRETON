@@ -1,6 +1,6 @@
 public class Simulation
 {
-    public void ChoisirTerrain()
+    public Terrain ChoisirTerrain()
     {
         Console.WriteLine("Choisissez un terrain :");
         Console.WriteLine("1. Terrain Argileux");
@@ -29,9 +29,15 @@ public class Simulation
                 break;
             default:
                 Console.WriteLine("Action invalide");
-                return; // on quitte la méthode si la touche est mauvaise
+                return null;
         }
+
         terrainChoisi.InitialiserT();
         terrainChoisi.AfficherT();
+
+        ModeClassique m1 = new ModeClassique();
+        m1.LancerPartie(terrainChoisi);
+
+        return terrainChoisi;
     }
 }
