@@ -30,3 +30,4 @@ public abstract class Obstacle
         return $"{Nom} ({Type}) - Effet : {Effet}, Durée : {DureeTours} tour(s)";
     }
 }
+
