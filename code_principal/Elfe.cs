@@ -2,11 +2,11 @@ public class Elfe : BonneFee
 {
     private Terrain terrain; // instance de terrain où l'elfe agit
 
-    public Elfe(Terrain terrain) : base("PetitElfe", "Plante des fleurs en état final", 1)
+    public Elfe(Terrain terrain) : base("petit elfe", "Plante des fleurs en état final", 1)
     {
         this.terrain = terrain;
     }
-    public override void Action()
+    public override void AiderPotager()
     {
         Plante fleur;
         int fleurAleatoire = rnd.Next(0, 3);
@@ -26,6 +26,6 @@ public class Elfe : BonneFee
         fleur.Terrain = terrain;
         terrain.AjouterPlante(fleur);
         fleur.EtatFinal();
-        Console.WriteLine($"{Nom} a fait apparaître une {fleur.Nom}.");
+        Console.WriteLine($"Car un {Nom} a planté un.e {fleur.Nom}.");
     }
 }

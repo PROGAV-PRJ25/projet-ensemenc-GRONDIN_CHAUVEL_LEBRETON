@@ -15,7 +15,7 @@ public abstract class BonneFee
 
     // À définir dans les classes dérivées (ex: Maladie, Intemperie, etc.)
 
-    public abstract void Action();
+    public abstract void AiderPotager();
 
     public override string ToString()
     {
