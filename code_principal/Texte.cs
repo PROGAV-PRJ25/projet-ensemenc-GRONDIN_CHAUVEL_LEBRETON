@@ -7,8 +7,8 @@ public class Texte
         Nom = nom;
     }
 
-    public void DefinirTerrain()
-    {      
+     public void DefinirTerrain()
+    {
         Console.WriteLine("Voici les différents types de terrains possibles :");
         Console.WriteLine("");
         Console.WriteLine("1. Terrain Argileux");
@@ -33,7 +33,7 @@ public class Texte
         Console.WriteLine("");
         Console.Write("Cliquez sur le numéro de votre choix (1-4)");
         Console.WriteLine("");
-        
+       
     }
 
     public void PresenterFruits()

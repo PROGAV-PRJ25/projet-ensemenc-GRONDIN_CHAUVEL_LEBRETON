@@ -1,4 +1,4 @@
 public abstract class Mode
 {
-    public abstract void LancerPartie(List<Plante> plantes, Terrain terrain);
+    public abstract void LancerPartie(Plante plante, Terrain terrain);
 }

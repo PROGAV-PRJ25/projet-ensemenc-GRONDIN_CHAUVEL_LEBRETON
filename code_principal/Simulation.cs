@@ -1,13 +1,14 @@
 public class Simulation
 {
-    public void ChoisirTerrain()
+    public void ChoisirTerrain(Texte t)
     {
         Console.WriteLine("Hello, il est maintenant temps de choisir à quoi va ressembler ton terrain.");
-        Texte.DefinirTerrain();
+        t.DefinirTerrain();
 
         ConsoleKey clic = Console.ReadKey().Key;
 
         Terrain terrainChoisi = null;
+
 
         switch (clic)
         {
@@ -29,6 +30,11 @@ public class Simulation
         }
         terrainChoisi.InitialiserT();
         terrainChoisi.AfficherT();
+
+    
+
+        ModeClassique m1 = new ModeClassique();
+        m1.LancerPartie(terrainChoisi,t);
 
     }
 

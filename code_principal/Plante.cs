@@ -17,6 +17,7 @@ public abstract class Plante
     public bool EstArrosee = false;
     public int PositionX { get; set; }
     public int PositionY { get; set; }
+    public Maladie Maladie { get; set; }
     public int EmojiAvantMaladie { get; set; } // pour restaurer l’emoji après guérison
 
 
@@ -136,18 +137,19 @@ public abstract class Plante
         }
     }
 
-    public void Soigner(Maladie m)
+    public void Soigner()
 {
-    if (Sante == EtatSante.Malade)
-    {
-        Sante = EtatSante.EnBonneSante;
-        Console.WriteLine($"{Nom} a été soignée par {m.Nom} ! ");
-        
-        // Restaurer l’emoji sauvegardé
-        if (Terrain != null)
+        if (Sante == EtatSante.Malade)
         {
-            Terrain.T[PositionX, PositionY] = EmojiAvantMaladie;
-        }
+            Sante = EtatSante.EnBonneSante;
+            Console.WriteLine($"{Nom} a été soignée par {Maladie.Nom} ! ");
+
+            // Restaurer l’emoji sauvegardé
+            if (Terrain != null)
+            {
+                Terrain.T[PositionX, PositionY] = EmojiAvantMaladie;
+            }
+        
     }
 }
     public void ExposerAuSoleil() // permet d'exposer la plante au soleil (augmente légèrement la croissance)

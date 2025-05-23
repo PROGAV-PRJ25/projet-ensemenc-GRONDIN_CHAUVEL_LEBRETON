@@ -129,6 +129,9 @@ public abstract class Terrain
                     case 22: // mauvaise herbe
                         Console.Write(" 🌾 ");
                         break;
+                    case 23 :
+                        Console.Write("🥀");
+                        break;
                     default:
                         Console.Write(" · ");
                         break;

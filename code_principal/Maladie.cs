@@ -23,7 +23,6 @@ public class Maladie : Obstacle
         {
             int index = rnd.Next(plantesSaines.Count);
             Plante planteChoisie = plantesSaines[index];
-            planteChoisie.Contaminer(Nom);
         }
         else
         {
