@@ -2,36 +2,37 @@ public class Simulation
 {
     public void ChoisirTerrain()
     {
-        ConsoleWriteLine("Choisis terrain1");
+        Console.WriteLine("Choisissez un terrain :");
+        Console.WriteLine("1. Terrain Argileux");
+        Console.WriteLine("2. Terrain Limoneux");
+        Console.WriteLine("3. Terrain Forestier");
+        Console.WriteLine("4. Terrain Sableux");
+
         ConsoleKey clic = Console.ReadKey().Key;
         Console.WriteLine();
+
+        Terrain terrainChoisi = null;
 
         switch (clic)
         {
             case ConsoleKey.D1:
-                TerrainArgileux t1 = new TerrainArgileux();
-                t1.InitialiserT();
-                t1.Afficher();
+                terrainChoisi = new TerrainArgileux();
                 break;
             case ConsoleKey.D2:
-                TerrainLimoneux t1 = new TerrainLimoneux();
-                t1.InitialiserT();
-                t1.Afficher();
+                terrainChoisi = new TerrainLimoneux();
                 break;
             case ConsoleKey.D3:
-                TerrainForestier t1 = new TerrainForestier();
-                t1.InitialiserT();
-                t1.Afficher();
+                terrainChoisi = new TerrainForestier();
                 break;
             case ConsoleKey.D4:
-                TerrainSableux t1 = new TerrainSableux();
-                t1.InitialiserT();
-                t1.Afficher();
+                terrainChoisi = new TerrainSableux();
                 break;
             default:
                 Console.WriteLine("Action invalide");
-                break;
+                return; // on quitte la méthode si la touche est mauvaise
         }
+
+        terrainChoisi.InitialiserT();
+        terrainChoisi.Afficher();
     }
 }
-

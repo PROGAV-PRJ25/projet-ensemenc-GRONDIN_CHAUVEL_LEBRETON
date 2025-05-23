@@ -12,7 +12,7 @@ public abstract class Plante
     public enum EtatSante {EnBonneSante, Malade, Morte} // pour différencier les différents états de la plante 
     public EtatSante Sante {get; set;}
     public int EsperanceDeVie { get; private set; }
-    public Terrain Terrain { get; set; } // association avec le terrain où est plantée la plante
+    public Terrain? Terrain { get; set; } // association avec le terrain où est plantée la plante
     public float Croissance {get; set;}
     public bool EstArrosee = false;
     public int PositionX { get; set; }
@@ -83,7 +83,7 @@ public abstract class Plante
     else if (Croissance >= 1.5f)
     {
         Console.WriteLine($"{Nom} est mature");
-        EtatFinal();
+        AtteindreEtatFinal();
     }
 }
     public void MettreAJourCroissance() // sert à faire évoluer la plante à chaque tour en fonction des conditions du terrain et si la plante a été arrosée 
@@ -123,7 +123,7 @@ public abstract class Plante
         }
     }
 
-    public abstract void EtatFinal();
+    public abstract void AtteindreEtatFinal();
 
     public void Contaminer(string cause)
     {
