@@ -1,6 +1,6 @@
 public class MauvaiseHerbe : Herbe 
 {
-    public MauvaiseHerbe() : base ("Mauvaise Herbe", "Les 4 météos", TypePlante.Herbe, "Tout terrain",45f, 30f, 8, 3, 30) {}
+public MauvaiseHerbe() : base ("Mauvaise Herbe", "Les 4 météos", TypePlante.Herbe, "Tout terrain",45f, 30f, 8, 3, 30) {}
 public override void Etat()
     {
         Terrain.T[PositionX, PositionY] = ;

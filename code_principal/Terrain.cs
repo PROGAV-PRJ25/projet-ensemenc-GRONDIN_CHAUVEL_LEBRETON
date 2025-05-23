@@ -50,10 +50,9 @@ public abstract class Terrain
     // Affiche en console le terrain et ses éléments (emojis)
     public void AfficherT()
     {
-        Console.WriteLine($"Terrain : {Nom} ({TypeSol})");
         for (int i = 0; i < Lignes; i++)
         {
-            Console.Write("│");
+            Console.Write(" ");
             for (int j = 0; j < Colonnes; j++)
             {
                 switch (T[i, j])
@@ -126,9 +125,9 @@ public abstract class Terrain
                         break;
                 }
             }
-            Console.WriteLine("│");
+            Console.WriteLine(" ");
         }
-        Console.WriteLine("└" + new string('─', Colonnes * 3) + "┘");
+        Console.WriteLine(" " + new string(' ', Colonnes * 3) + " ");
     }
 
     // Méthode qui vérifie si on peut planter
@@ -153,7 +152,7 @@ public abstract class Terrain
             PlantesCultivees.Add(plante); // ajout d'une plante
             plante.Terrain = this;
             PlacerPlanteSurTerrain(plante);
-            Console.WriteLine($"Plante {plante.Nom} ajoutée au terrain {Nom}.");
+            Console.WriteLine($"Plante {plante.Nom} ajoutée au {Nom}.");
         }
         else Console.WriteLine($"Pas assez de place pour planter {plante.Nom} sur le terrain {Nom}.");
     }
@@ -233,7 +232,6 @@ public abstract class Terrain
                 resultat += $" - {plante.Nom} \n";
             }
         }
-
         return resultat;
     }
 }

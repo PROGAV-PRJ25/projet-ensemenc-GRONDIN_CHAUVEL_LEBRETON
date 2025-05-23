@@ -2,7 +2,7 @@ public class Dragon : Obstacle
 {
     public Dragon () : base ("Petit dragon", "animal", "Brûle tout", 1)
     {}
-    public override void Action()
+    public override void Agir()
     {
         int lignes = Univers.Lignes;
         int colonnes = Univers.Colonnes;
