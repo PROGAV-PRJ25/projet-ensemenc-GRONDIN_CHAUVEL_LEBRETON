@@ -2,7 +2,7 @@ public class Simulation
 {
     public void ChoisirTerrain()
     {
-        Console.WriteLine("Hello, il est maintenant temps de choisir à quoi va ressembler ton terrain.")
+        Console.WriteLine("Hello, il est maintenant temps de choisir à quoi va ressembler ton terrain.");
         Texte.DefinirTerrain();
 
         ConsoleKey clic = Console.ReadKey().Key;

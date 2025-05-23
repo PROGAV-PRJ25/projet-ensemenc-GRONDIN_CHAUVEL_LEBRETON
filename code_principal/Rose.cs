@@ -7,4 +7,4 @@ public class Rose: Fleur
         Terrain.T[PositionX, PositionY] = 16;
         Console.WriteLine($"{Nom} a atteint son état final !");
     }
-}it 
+}

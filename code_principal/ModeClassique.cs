@@ -1,4 +1,4 @@
-public class ModeClassique : Mode
+/*public class ModeClassique : Mode
  {
 //     private Random ramdom = new Random();
 
@@ -25,7 +25,7 @@ public class ModeClassique : Mode
                      plante.Soigner();
                      break;
                  case ConsoleKey.D3 :
-                     plante.ExposerAuSoleil()
+                     plante.ExposerAuSoleil();
                      break;
                  default:
                     Console.WriteLine("Action invalide");
@@ -34,3 +34,5 @@ public class ModeClassique : Mode
         }
      }
  }
+
+ */

@@ -9,7 +9,7 @@ public class Texte
 
     public void DefinirTerrain()
     {      
-        Console.WriteLine("Voici les différents types de terrains possibles :")
+        Console.WriteLine("Voici les différents types de terrains possibles :");
         Console.WriteLine("");
         Console.WriteLine("1. Terrain Argileux");
         Console.WriteLine("   Description: Sol riche en nutriments mais drainant mal.");
