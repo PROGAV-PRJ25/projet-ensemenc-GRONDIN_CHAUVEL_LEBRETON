@@ -1,16 +1,20 @@
-public override void InitialiserT()
+public class TerrainForestier : Terrain
 {
-    base.InitialiserT();
-    Random random = new Random();
-    int nbArbres = random.Next(Lignes * Colonnes / 20, Lignes * Colonnes / 10);
 
-    for (int i = 0; i < nbArbres; i++)
+    public TerrainForestier() : base("Terrain forestier", 225f, "Automne", "Forestier", 65f, 40f, 16f, 12f, false, 15, 15)
     {
-        int x = random.Next(0, Lignes);
-        int y = random.Next(0, Colonnes);
-        if (T[x, y] == 0)
+        TypeSol = "Forestier";
+    }
+    public override void InitialiserT()
+    {
+        base.InitialiserT();
+        Random random = new Random();
+        int nbArbres = random.Next(Lignes * Colonnes / 20, Lignes * Colonnes / 10);
+
+        for (int i = 0; i < nbArbres; i++)
         {
-            T[x, y] = 9; 
+            int x = random.Next(0, Lignes);
+            int y = random.Next(0, Colonnes);
         }
     }
 }

@@ -32,6 +32,6 @@ public class Simulation
                 return; // on quitte la méthode si la touche est mauvaise
         }
         terrainChoisi.InitialiserT();
-        terrainChoisi.Afficher();
+        terrainChoisi.AfficherT();
     }
 }
