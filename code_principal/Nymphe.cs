@@ -1,10 +1,10 @@
-public class PoussiereDeFee : BonneFee
+public class Nymphe : BonneFee
 {
     private Terrain terrain;
     private static Random ok = new Random();
 
-    public PoussiereDeFee(Terrain terrain)
-        : base("Poussière de Fée", "Fait passer toutes les jeunes pousses en état final sur 6 lignes d'un terrain", 1)
+    public Nymphe(Terrain terrain)
+        : base("Nymphe", "Guérit toutes les plantes sur 5 lignes d'un terrain", 1)
     {
         this.terrain = terrain;
     }
@@ -27,8 +27,8 @@ public class PoussiereDeFee : BonneFee
                 && plante.PositionX < startIndex + lignesAAgir
                 && plante.Sante != Plante.EtatSante.Morte)
             {
-                plante.EtatFinal();
-                Console.WriteLine($"Et cela grâce à la {Nom} ✨");
+                plante.Sante = Plante.EtatSante.EnBonneSante;
+                Console.WriteLine($"Et cela grâce à la {Nom} !");
             }
         }
     }
