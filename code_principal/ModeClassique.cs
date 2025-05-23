@@ -4,6 +4,10 @@ public class ModeClassique
 
     public void LancerPartie(Terrain terrain, Texte t)
     {
+
+        Console.WriteLine("📋 Caractéristiques du terrain :");
+        Console.WriteLine(terrain); 
+        
         t.PresenterFleurs();
         ConsoleKey clic = Console.ReadKey().Key;
         Console.WriteLine();
@@ -90,7 +94,16 @@ public class ModeClassique
             switch (clic)
             {
                 case ConsoleKey.D1:
-                    fleurChoisie.ArroserPlantes();
+                    Console.WriteLine("Quelle plante voulez-vous arroser ?");
+                    terrain.AfficherPlantesAvecIndex();
+                    if (int.TryParse(Console.ReadLine(), out int choix) && choix >= 1 && choix <= terrain.NombrePlantes())
+                    {
+                        terrain.ArroserPlanteParIndex(choix - 1);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Choix invalide.");
+                    }
                     break;
                 case ConsoleKey.D2:
                     fleurChoisie.Soigner();
@@ -102,6 +115,12 @@ public class ModeClassique
                     Console.WriteLine("Action invalide");
                     break;
             }
+            fleurChoisie.MettreAJourCroissance();
+            fleurChoisie.AtteindreEtatFinal();
+            terrain.AfficherT();
+            fleurChoisie.MettreAJourCroissance();
+            fleurChoisie.AtteindreEtatFinal();
+            terrain.AfficherT();
         }
     }
 }

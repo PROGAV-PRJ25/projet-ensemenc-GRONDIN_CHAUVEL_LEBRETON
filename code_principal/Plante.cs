@@ -14,7 +14,6 @@ public abstract class Plante
     public int EsperanceDeVie { get; private set; }
     public Terrain? Terrain { get; set; } // association avec le terrain où est plantée la plante
     public float Croissance {get; set;}
-    public bool EstArrosee = false;
     public int PositionX { get; set; }
     public int PositionY { get; set; }
     public Maladie Maladie { get; set; }
@@ -67,62 +66,61 @@ public abstract class Plante
         return (float)(conditionsOk / (double)nbConditionsTotal) * 100;
     }
     public void AfficherEvolutionPlantes()
-{
-    if (Sante == EtatSante.Morte)
     {
-        return; 
-    }
-
-    if (Croissance <= 0.5f)
-    {
-        Console.WriteLine($"{Nom} vient de germer");
-    }
-    else if (Croissance < 1.3f)
-    {
-        Console.WriteLine($"{Nom} est en croissance");
-    }
-    else if (Croissance >= 1.5f)
-    {
-        Console.WriteLine($"{Nom} est mature");
-        AtteindreEtatFinal();
-    }
-}
-    public void MettreAJourCroissance() // sert à faire évoluer la plante à chaque tour en fonction des conditions du terrain et si la plante a été arrosée 
-    {
-
-         float pourcentageConditions = CroissanceSelonConditions(Terrain);
-
-
-        if(EstArrosee)
+        if (Sante == EtatSante.Morte)
         {
-            Croissance += 1.5f;// 0.5 pour que ce soit plus rapide
-            EstArrosee = false;
+            return;
         }
-        else if(pourcentageConditions < 75)
+
+        if (Croissance <= 0.5f)
         {
-            Croissance += 0.4f;
-            Console.WriteLine($"{Nom} pousse bien ! {pourcentageConditions}%");
+            Console.WriteLine($"{Nom} vient de germer");
         }
-        else
+        else if (Croissance < 1.3f)
         {
-            Croissance += 0.5f;
-            Console.WriteLine($"{Nom} pousse VITE !! {pourcentageConditions}%");
+            Console.WriteLine($"{Nom} est en croissance");
         }
+        else if (Croissance >= 1.5f)
+        {
+            Console.WriteLine($"{Nom} est mature");
+            AtteindreEtatFinal();
+        }
+    }
+    public void MettreAJourCroissance()
+    {
+        float pourcentageConditions = CroissanceSelonConditions(Terrain);
+
+        if (Croissance < 1.5f)
+        {
+            if (pourcentageConditions < 75)
+            {
+                Croissance += 0.4f;
+                Console.WriteLine($"{Nom} pousse bien ! {pourcentageConditions}%");
+            }
+            else
+            {
+                Croissance += 0.5f;
+                Console.WriteLine($"{Nom} pousse VITE !! {pourcentageConditions}%");
+            }
+        }
+
         AfficherEvolutionPlantes();
     }
 
-        public void ArroserPlantes() //Sert à arroser une plante une seule fois 
+
+    public void ArroserPlantes()
     {
-        if (!EstArrosee)// si non arrosée => on veut qu'elle soit arrosée
+        if (Croissance >= 1.5f)
         {
-            EstArrosee = true;
-            Console.WriteLine($"{Nom} est arrosée 💧 !!");
+            Console.WriteLine($"{Nom} est déjà mature et n’a pas besoin d’eau.");
+            return;
         }
-        else
-        {
-            Console.WriteLine("Cette plante a déjà été arrosée récemment"); // si arrosée est true alors on ne peut pas arroser une nouvelle fois 
-        }
+
+        Croissance += 1.5f; // bonus d'arrosage
+        Console.WriteLine($"{Nom} a été arrosée 💧 !");
     }
+    
+
 
     public abstract void AtteindreEtatFinal();
 
@@ -161,6 +159,4 @@ public abstract class Plante
     {
         return $"Nom : {Nom}, Type : {Type}, Santé : {Sante}, Croissance : {Croissance}";
     }
-
-
 }
