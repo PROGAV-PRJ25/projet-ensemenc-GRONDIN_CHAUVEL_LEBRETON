@@ -1,6 +1,5 @@
-/*public class Taupe : Obstacle
+public class Taupe : Obstacle
 {
-    private Terrain Univers;
     public Taupe() : base("Taupe", "animal", "Fait des tas de terre et déracine les plantations", 1) { }
     
 public override void Agir()
@@ -35,4 +34,3 @@ public override void Agir()
     Univers.T[ligne, col] = 7;
 }
 }
-*/

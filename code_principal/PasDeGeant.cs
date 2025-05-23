@@ -1,4 +1,3 @@
-using System.Security.Cryptography.X509Certificates;
 public class PasDeGeant : Obstacle
 {
     public PasDeGeant () : base ("Pas de géant", "destructeur",  "Ecrase toutes les plantations", 1)
