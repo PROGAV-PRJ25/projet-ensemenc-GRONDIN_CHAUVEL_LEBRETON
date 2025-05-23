@@ -21,7 +21,6 @@ public abstract class Obstacle
     public void DefinirUnivers(Terrain terrain)
     {
         Univers = terrain;
-    }
 
     public abstract void Action();
 
