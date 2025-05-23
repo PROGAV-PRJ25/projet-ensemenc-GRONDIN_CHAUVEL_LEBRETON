@@ -120,6 +120,12 @@ public abstract class Terrain
                     case 19: // arbre
                         Console.Write(" 🌻 ");
                         break;
+                    case 20: // dragon
+                        Console.Write(" 🐉 ");
+                        break;
+                    case 21: // feu
+                        Console.Write(" 🔥 ");
+                        break;
                     default:
                         Console.Write(" · ");
                         break;

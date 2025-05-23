@@ -34,11 +34,4 @@ public class Texte
         Console.WriteLine("1-Arroser\n2-Soigner\n3-Exposer au soleil");
         Console.WriteLine("Cliques sur le chiffre correspondant à l'action que tu veux effectuer");
     }
-
-    public void ExpliquererMUrgence()
-    {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("!!! Attention, le mode urgence est activé. Le dragon attaque le terrain !!!");
-        Console.WriteLine("Présenter les actions d'urgence");
-    }
 }

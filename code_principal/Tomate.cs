@@ -1,9 +1,9 @@
-public class Tomate : Legume
-{
-    public Tomate() : base("Tomate", "Ete", TypePlante.Legume, "Argileux", 30f, 25f, 7, 60, 6) { }
-    public override void EtatFinal()
-    {
-       Terrain.T[PositionX, PositionY] = 18;
-       Console.WriteLine($"{Nom} a atteint son état final !");
-    }
-}
+// public class Tomate : Legume
+// {
+//     public Tomate() : base("Tomate", "Ete", TypePlante.Legume, "Argileux", 30f, 25f, 7, 60, 6) { }
+//     public override void EtatFinal()
+//     {
+//        Terrain.T[PositionX, PositionY] = 18;
+//        Console.WriteLine($"{Nom} a atteint son état final !");
+//     }
+// }
