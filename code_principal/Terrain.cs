@@ -18,7 +18,7 @@ public abstract class Terrain
     // Matrice représentant l’état du terrain (0=vide, 1=semis, ...)
     public int[,] T { get; set; }
 
-    public Terrain(string nom, float surface,  string meteo, string typeSol, float humidite, float precipitations, float luminosite, float temperature, bool estProtege, int lignes = 15, int colonnes = 15)
+    public Terrain(string nom, float surface, string meteo, string typeSol, float humidite, float precipitations, float luminosite, float temperature, bool estProtege, int lignes = 15, int colonnes = 15)
     {
         Nom = nom;
         Surface = surface;
@@ -129,7 +129,7 @@ public abstract class Terrain
                     case 22: // mauvaise herbe
                         Console.Write(" 🌾 ");
                         break;
-                    case 23 :
+                    case 23:
                         Console.Write("🥀");
                         break;
                     default:
@@ -164,7 +164,7 @@ public abstract class Terrain
             PlantesCultivees.Add(plante); // ajout d'une plante
             plante.Terrain = this;
             PlacerPlanteSurTerrain(plante);
-            Console.WriteLine($"Plante {plante.Nom} ajoutée au {Nom}.");
+            Console.WriteLine($"\n Plante {plante.Nom} ajoutée au {Nom}.");
         }
         else Console.WriteLine($"Pas assez de place pour planter {plante.Nom} sur le terrain {Nom}.");
     }
@@ -247,4 +247,30 @@ public abstract class Terrain
         }
         return resultat;
     }
+
+    public void AfficherPlantesAvecIndex()
+    {
+        for (int i = 0; i < PlantesCultivees.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {PlantesCultivees[i]}");
+        }
+    }
+    public void ArroserPlanteParIndex(int index)
+    {
+        if (index >= 0 && index < PlantesCultivees.Count)
+        {
+            PlantesCultivees[index].ArroserPlantes();
+        }
+        else
+        {
+            Console.WriteLine("Index de plante invalide.");
+        }
+    }
+
+    public int NombrePlantes()
+    {
+        return PlantesCultivees.Count;
+    }
+
+
 }
