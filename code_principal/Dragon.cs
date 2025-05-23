@@ -33,7 +33,5 @@ public class Dragon : Obstacle
             Univers.AfficherT();
             Thread.Sleep(300); // effet visuel
         }
-
-        Console.WriteLine(" Tout a été réduit en cendres !");
     }
 }

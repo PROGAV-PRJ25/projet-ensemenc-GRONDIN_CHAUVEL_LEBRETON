@@ -1,130 +1,120 @@
-// ModeUrgence.cs
 public class ModeUrgence
 {
     private Terrain terrain;
+    private Dragon dragon;
     private Random random;
 
     public ModeUrgence(Terrain terrain)
     {
         this.terrain = terrain;
+        this.dragon = new Dragon { Univers = terrain }; // on lie le dragon au terrain
         this.random = new Random();
     }
 
     public void DeclencherAttaqueDragon()
-{
-    Console.Clear();
-    Console.ForegroundColor = ConsoleColor.Red;
-    Console.WriteLine("🚨 ALERTE URGENCE 🚨");
-    Console.WriteLine("Un dragon attaque votre potager !");
-    Console.ResetColor();
-
-    Thread.Sleep(2000);
-
-    // Ajouter le dragon au terrain
-    var (x, y, ancienneValeur) = AjouterDragonSurTerrain();
-    terrain.AfficherT();
-
-    ProposerChoixUrgence();
-
-    // 🔁 Faire disparaître le dragon après l'action
-    terrain.T[x, y] = ancienneValeur;
-
-    Console.WriteLine("\n🐉 Le dragon a quitté le terrain...");
-    terrain.AfficherT();
-}
-
-    private (int x, int y, int ancienneValeur) AjouterDragonSurTerrain()
     {
-        int x = random.Next(0, terrain.Lignes);
-        int y = random.Next(0, terrain.Colonnes);
-        int ancienneValeur = terrain.T[x, y];
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("🚨 ALERTE URGENCE : DRAGON EN APPROCHE !");
+        Console.ResetColor();
 
-        terrain.T[x, y] = 20; // Code pour le dragon
-        Console.WriteLine($"🐉 Le dragon apparaît en position ({x}, {y}) !");
-        return (x, y, ancienneValeur);
+        Console.WriteLine($"🐉 Un dragon attaque le terrain {terrain.Nom} ({terrain.TypeSol}) !");
+        Console.WriteLine($"🌡️ Température : {terrain.Temperature}°C | Météo : {terrain.Meteo}");
+        Thread.Sleep(1000);
+
+        // Le dragon agit immédiatement : feu visuel sur le terrain
+        dragon.Agir(); // Ce qui met le feu (code 21) dans la grille terrain.T
+
+        // Ensuite le joueur choisit la réponse à cette attaque
+        ProposerChoixUrgence();
+        
+        terrain.AfficherT();
     }
 
     private void ProposerChoixUrgence()
     {
         if (terrain.PlantesCultivees.Count == 0)
         {
-            Console.WriteLine("Heureusement, il n'y a pas de plantes sur le terrain !");
+            Console.WriteLine("Il n'y a pas de plantes à sauver !");
             return;
         }
 
-        Console.WriteLine("\n🔥 Le dragon va attaquer ! Choisissez votre stratégie :");
-        Console.WriteLine("1. 🛡️  Protéger toutes les plantes (elles deviennent malades)");
-        Console.WriteLine("2. 🏃 Évacuer la moitié des plantes (les autres sont détruites)");
-        Console.Write("Votre choix (1 ou 2) : ");
-
-        string choix = Console.ReadLine();
-
-        switch (choix)
+        string? choix;
+        do
         {
-            case "1":
-                ExecuterProtectionTotale();
-                break;
-            case "2":
-                ExecuterEvacuationPartielle();
-                break;
-            default:
-                Console.WriteLine("Choix invalide ! Évacuation par défaut...");
-                ExecuterEvacuationPartielle();
-                break;
-        }
+            Console.WriteLine("\n🔥 Que voulez-vous faire après l'attaque ?");
+            Console.WriteLine("1. 🛡️ Tout protéger (les plantes sont malades mais vivantes)");
+            Console.WriteLine("2. 🏃 Sauver la moitié (saines), les autres sont perdues");
+            Console.Write("Votre choix (1 ou 2) : ");
+            choix = Console.ReadLine();
+        } while (choix != "1" && choix != "2");
 
-        // Afficher le terrain après l'attaque
-        Console.WriteLine("\nÉtat du terrain après l'attaque :");
+        if (choix == "1") ExecuterProtectionTotale();
+        else ExecuterEvacuationPartielle();
+
+        // Affiche le terrain mis à jour après l'action du joueur
+        Console.WriteLine("\n🌍 État du terrain après votre action :");
         terrain.AfficherT();
     }
 
     private void ExecuterProtectionTotale()
     {
-        Console.WriteLine("\n🛡️ PROTECTION TOTALE ACTIVÉE !");
-        Console.WriteLine("Toutes vos plantes sont protégées mais tombent malades...");
-
-        Thread.Sleep(1500);
-
-        // Toutes les plantes deviennent malades
+        Console.WriteLine("\n🛡️ Bouclier magique : les plantes sont sauvées mais malades.");
         foreach (var plante in terrain.PlantesCultivees)
         {
-            plante.Contaminer("attaque de dragon");
+            plante.Contaminer("fumée du dragon");
         }
 
-        Console.WriteLine($"✅ {terrain.PlantesCultivees.Count} plantes sauvées (mais malades) !");
-        Console.WriteLine("💡 Utilisez des soins pour les guérir.");
-    }
+        // Nettoyer le feu et replacer toutes les plantes
+        NettoyerTerrainEtPlacerPlantes(terrain.PlantesCultivees);
 
-    private void ExecuterEvacuationPartielle()
-    {
-        Console.WriteLine("\n🏃 ÉVACUATION PARTIELLE ACTIVÉE !");
-
-        int nombreTotal = terrain.PlantesCultivees.Count;
-        int nombreADetruire = nombreTotal / 2;
-
-        // Sélectionner aléatoirement les plantes à détruire
-        var plantesADetruire = terrain.PlantesCultivees
-            .OrderBy(x => random.Next())
-            .Take(nombreADetruire)
-            .ToList();
-
-        Console.WriteLine($"🌱 {nombreTotal - nombreADetruire} plantes évacuées avec succès !");
-        Console.WriteLine($"💀 {nombreADetruire} plantes seront détruites...");
-
-        Thread.Sleep(1500);
-
-        // Marquer les positions comme brûlées et retirer les plantes
-        foreach (var plante in plantesADetruire)
-        {
-            terrain.T[plante.PositionX, plante.PositionY] = 21; // feu
-        }
-
-        // Retirer les plantes détruites de la liste
-        terrain.PlantesCultivees.RemoveAll(p => plantesADetruire.Contains(p));
-
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine($"⚖️  BILAN : {nombreTotal - nombreADetruire} sauvées, {nombreADetruire} perdues");
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine($"✅ {terrain.PlantesCultivees.Count} plantes vivantes mais malades.");
         Console.ResetColor();
     }
-}
 
+
+    private void ExecuterEvacuationPartielle()
+{
+        int total = terrain.PlantesCultivees.Count;
+        int àBrûler = total / 2;
+
+        var sacrifiées = terrain.PlantesCultivees.OrderBy(p => random.Next()).Take(àBrûler).ToList();
+        var sauvées = terrain.PlantesCultivees.Except(sacrifiées).ToList();
+
+        // Nettoyer tout le feu et replacer uniquement les plantes sauvées
+        NettoyerTerrainEtPlacerPlantes(sauvées);
+
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine($"✅ {sauvées.Count} plantes sauvées");
+        Console.WriteLine($"🔥 {sacrifiées.Count} ont été brûlées par le dragon");
+        Console.ResetColor();
+    }
+
+
+    private void NettoyerTerrainEtPlacerPlantes(List<Plante> plantesSauvees)
+    {
+        int lignes = terrain.T.GetLength(0);
+        int colonnes = terrain.T.GetLength(1);
+
+        // Nettoyer tout le feu
+        for (int y = 0; y < lignes; y++)
+        {
+            for (int x = 0; x < colonnes; x++)
+            {
+                if (terrain.T[y, x] == 21) // si feu
+                    terrain.T[y, x] = 0;   // mettre terrain sain (ou vide)
+            }
+        }
+
+        // Remettre les plantes sauvées sur le terrain
+        foreach (var plante in plantesSauvees)
+        {
+            terrain.T[plante.PositionX, plante.PositionY] = 1; // ou un code pour plante
+        }
+
+        // Mettre à jour la liste des plantes cultivées
+        terrain.PlantesCultivees = plantesSauvees;
+    }
+
+}
