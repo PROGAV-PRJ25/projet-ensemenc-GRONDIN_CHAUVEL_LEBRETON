@@ -65,9 +65,41 @@ public abstract class Plante
         }
         return (float)(conditionsOk / (double)nbConditionsTotal) * 100;
     }
+<<<<<<< HEAD
     public void AfficherEvolutionPlantes()
     {
         if (Sante == EtatSante.Morte)
+=======
+
+    public void AfficherEvolutionPlantes()
+    {
+        if (Sante == EtatSante.Morte)
+        {
+            return; 
+        }
+
+        if (Croissance <= 0.5f)
+        {
+        Console.WriteLine($"{Nom} vient de germer");
+        }
+        else if (Croissance < 1.3f)
+        {
+            Console.WriteLine($"{Nom} est en croissance");
+        }
+        else if (Croissance >= 1.5f)
+        {
+            Console.WriteLine($"{Nom} est mature");
+            AtteindreEtatFinal();
+        }
+    }
+    public void MettreAJourCroissance() // sert à faire évoluer la plante à chaque tour en fonction des conditions du terrain et si la plante a été arrosée 
+    {
+
+         float pourcentageConditions = CroissanceSelonConditions(Terrain);
+
+
+        if(EstArrosee)
+>>>>>>> f022f4c6dc6fb10f651953c551e2794b060522a1
         {
             return;
         }
@@ -107,8 +139,12 @@ public abstract class Plante
         AfficherEvolutionPlantes();
     }
 
+<<<<<<< HEAD
 
     public void ArroserPlantes()
+=======
+    public void ArroserPlantes() //Sert à arroser une plante une seule fois 
+>>>>>>> f022f4c6dc6fb10f651953c551e2794b060522a1
     {
         if (Croissance >= 1.5f)
         {
@@ -159,4 +195,8 @@ public abstract class Plante
     {
         return $"Nom : {Nom}, Type : {Type}, Santé : {Sante}, Croissance : {Croissance}";
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> f022f4c6dc6fb10f651953c551e2794b060522a1
 }

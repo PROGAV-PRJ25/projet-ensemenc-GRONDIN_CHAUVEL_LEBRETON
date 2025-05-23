@@ -37,4 +37,6 @@ public class Simulation
         m1.LancerPartie(terrainChoisi,t);
 
     }
+
+
 }

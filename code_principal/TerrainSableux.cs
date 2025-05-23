@@ -6,7 +6,7 @@ public class TerrainSableux : Terrain
                             }
     
     //plantes qui nécessite beaucoup d'eau ne sont pas idéales pour ce type de sol
-    public bool PeutAccueillir(Plante plante)
+    public override bool PeutAccueillir(Plante plante)
     {
         if (plante.HumiditeNecessaire>70)
         {
