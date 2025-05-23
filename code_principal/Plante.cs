@@ -1,7 +1,7 @@
 public abstract class Plante
 {
     public string Nom { get; set; } //pour différencier les différentes plantes 
-    public enum TypePlante { Fruit, Legume, Fleur, Herbe} //  0 = Fruit, 1 = Légume, 2 = Fleur,..
+    public enum TypePlante { Fruit, Legume, Fleur, Herbe } //  0 = Fruit, 1 = Légume, 2 = Fleur,..
     public TypePlante Type { get; set; }
     public string MeteoPref { get; private set; }
     public string TypeSolNecessaire { get; private set; }
@@ -9,11 +9,11 @@ public abstract class Plante
     public float TemperatureNecessaire { get; private set; }
     public int LuminositeNecessaire { get; private set; }
     public int EspaceNecessaire { get; private set; } // "Necessaire" permet de mettre en évidence que ce sont des conditions spécifiques à la plante  
-    public enum EtatSante {EnBonneSante, Malade, Morte} // pour différencier les différents états de la plante 
-    public EtatSante Sante {get; set;}
+    public enum EtatSante { EnBonneSante, Malade, Morte } // pour différencier les différents états de la plante 
+    public EtatSante Sante { get; set; }
     public int EsperanceDeVie { get; private set; }
     public Terrain? Terrain { get; set; } // association avec le terrain où est plantée la plante
-    public float Croissance {get; set;}
+    public float Croissance { get; set; }
     public int PositionX { get; set; }
     public int PositionY { get; set; }
     public Maladie Maladie { get; set; }
@@ -65,41 +65,10 @@ public abstract class Plante
         }
         return (float)(conditionsOk / (double)nbConditionsTotal) * 100;
     }
-<<<<<<< HEAD
-    public void AfficherEvolutionPlantes()
-    {
-        if (Sante == EtatSante.Morte)
-=======
 
     public void AfficherEvolutionPlantes()
     {
         if (Sante == EtatSante.Morte)
-        {
-            return; 
-        }
-
-        if (Croissance <= 0.5f)
-        {
-        Console.WriteLine($"{Nom} vient de germer");
-        }
-        else if (Croissance < 1.3f)
-        {
-            Console.WriteLine($"{Nom} est en croissance");
-        }
-        else if (Croissance >= 1.5f)
-        {
-            Console.WriteLine($"{Nom} est mature");
-            AtteindreEtatFinal();
-        }
-    }
-    public void MettreAJourCroissance() // sert à faire évoluer la plante à chaque tour en fonction des conditions du terrain et si la plante a été arrosée 
-    {
-
-         float pourcentageConditions = CroissanceSelonConditions(Terrain);
-
-
-        if(EstArrosee)
->>>>>>> f022f4c6dc6fb10f651953c551e2794b060522a1
         {
             return;
         }
@@ -139,12 +108,8 @@ public abstract class Plante
         AfficherEvolutionPlantes();
     }
 
-<<<<<<< HEAD
 
-    public void ArroserPlantes()
-=======
-    public void ArroserPlantes() //Sert à arroser une plante une seule fois 
->>>>>>> f022f4c6dc6fb10f651953c551e2794b060522a1
+    public void ArroserPlantes() //Sert à arroser une plante une seule fois
     {
         if (Croissance >= 1.5f)
         {
@@ -155,7 +120,7 @@ public abstract class Plante
         Croissance += 1.5f; // bonus d'arrosage
         Console.WriteLine($"{Nom} a été arrosée 💧 !");
     }
-    
+
 
 
     public abstract void AtteindreEtatFinal();
@@ -171,7 +136,7 @@ public abstract class Plante
     }
 
     public void Soigner()
-{
+    {
         if (Sante == EtatSante.Malade)
         {
             Sante = EtatSante.EnBonneSante;
@@ -182,21 +147,17 @@ public abstract class Plante
             {
                 Terrain.T[PositionX, PositionY] = EmojiAvantMaladie;
             }
-        
+
+        }
     }
-}
     public void ExposerAuSoleil() // permet d'exposer la plante au soleil (augmente légèrement la croissance)
     {
         Croissance += 0.1f;
         Console.WriteLine($"{Nom} a profité du soleil ☀️!");
     }
-    
+
     public override string ToString()
     {
         return $"Nom : {Nom}, Type : {Type}, Santé : {Sante}, Croissance : {Croissance}";
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> f022f4c6dc6fb10f651953c551e2794b060522a1
 }
