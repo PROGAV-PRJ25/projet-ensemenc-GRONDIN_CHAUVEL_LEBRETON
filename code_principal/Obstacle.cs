@@ -5,11 +5,10 @@ public abstract class Obstacle
     public bool AffecteTerrain { get; set; }
     public string Effet { get; set; }
     public int DureeTours { get; set; }
-    public Terrain Univers { get; set; }
+    public Terrain? Univers { get; set; }
     protected static Random rnd = new Random();
 
-    public Obstacle(string nom, string type, string effet, int dureeTours,
-                    bool affectePlantes = false, bool affecteTerrain = false)
+    public Obstacle(string nom, string type, string effet, int dureeTours, bool affecteTerrain = false)
     {
         Nom = nom;
         Type = type;
@@ -30,3 +29,4 @@ public abstract class Obstacle
         return $"{Nom} ({Type}) - Effet : {Effet}, Durée : {DureeTours} tour(s)";
     }
 }
+

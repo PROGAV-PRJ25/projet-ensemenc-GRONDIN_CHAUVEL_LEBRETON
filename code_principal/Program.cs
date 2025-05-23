@@ -1,4 +1,4 @@
-﻿Console.OutputEncoding = System.Text.Encoding.UTF8;
+Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 TerrainArgileux t1 = new TerrainArgileux();
 
