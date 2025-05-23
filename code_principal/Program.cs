@@ -1,7 +1,15 @@
-﻿Tomate tomatoo = new Tomate();
-Fraise f1 = new Fraise();
-Tomate tomato2 = new Tomate();
-Fraise f2 = new Fraise();
+﻿Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+TerrainArgileux t1 = new TerrainArgileux();
+
+
+Fraise tomatoo = new Fraise();
 t1.AjouterPlante(tomatoo);
-Dragon 
+
+MauvaiseHerbe mh = new MauvaiseHerbe();
+t1.AjouterPlante(mh);
+
+Brebis bew = new Brebis(t1);
+bew.AiderPotager();
+
 t1.AfficherT();

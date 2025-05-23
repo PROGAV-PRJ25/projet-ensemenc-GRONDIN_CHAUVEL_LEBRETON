@@ -1,11 +1,11 @@
-/*public class Maladie : Obstacle
+public class Maladie : Obstacle
 {
     public Maladie(string nom, int duree)
         : base(nom, "maladie", "contamine une plante en bonne santé", duree, affecteTerrain: false)
     {
     }
 
-    public override void Action()
+    public override void Agir()
     {
         // Créer une liste de plantes en bonne santé
         List<Plante> plantesSaines = new List<Plante>();
@@ -31,5 +31,3 @@
         }
     }
 }
-
-*/

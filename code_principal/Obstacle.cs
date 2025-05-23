@@ -23,7 +23,7 @@ public abstract class Obstacle
         Univers = terrain;
     }
 
-    public abstract void Action();
+    public abstract void Agir();
 
     public override string ToString()
     {

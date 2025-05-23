@@ -4,7 +4,7 @@ public class PasDeGeant : Obstacle
     public PasDeGeant () : base ("Pas de géant", "destructeur",  "Ecrase toutes les plantations", 1)
     {}
 
-    public override void Action()
+    public override void Agir()
     {
         
         Random random = new Random ();

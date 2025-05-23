@@ -12,7 +12,7 @@ public abstract class Plante
     public enum EtatSante { EnBonneSante, Malade, Morte } // pour différencier les différents états de la plante 
     public EtatSante Sante { get; set; }
     public int EsperanceDeVie { get; private set; }
-    public Terrain Terrain { get; set; } // association avec le terrain où est plantée la plante
+    public Terrain? Terrain { get; set; } // association avec le terrain où est plantée la plante
     public float Croissance { get; set; }
     public bool EstArrosee = false;
     public int PositionX { get; set; }
@@ -139,7 +139,7 @@ public abstract class Plante
         Console.WriteLine($"Sante : {jauge} {pourcentageConditions}");
     }
 
-    public abstract void EtatFinal();
+    public abstract void AtteindreEtatFinal();
 
     public void AfficherEvolutionPlantes()
     {
