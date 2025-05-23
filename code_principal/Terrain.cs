@@ -47,7 +47,7 @@ public abstract class Terrain
         }
     }
 
-    // Affiche le terrain en console avec des symboles
+    // Affiche en console le terrain et ses éléments (emojis)
     public void AfficherT()
     {
         Console.WriteLine($"Terrain : {Nom} ({TypeSol})");
