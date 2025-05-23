@@ -31,7 +31,7 @@ public class ModeUrgence
         terrain.AfficherT();
     }
 
-    private void ProposerChoixUrgence()
+    public void ProposerChoixUrgence()
     {
         if (terrain.PlantesCultivees.Count == 0)
         {

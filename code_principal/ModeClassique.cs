@@ -25,6 +25,7 @@ public class ModeClassique
                 Console.WriteLine("Action invalide");
                 return;
         }
+        Console.WriteLine(" ");
         terrain.AjouterPlante(fleurChoisie);
         terrain.AfficherT();
 
@@ -48,6 +49,7 @@ public class ModeClassique
                 Console.WriteLine("Action invalide");
                 return;
         }
+        Console.WriteLine(" ");
         terrain.AjouterPlante(fruitChoisi);
         terrain.AfficherT();
 
@@ -77,6 +79,7 @@ public class ModeClassique
                 Console.WriteLine("Action invalide");
                 return;
         }
+        Console.WriteLine(" ");
         terrain.AjouterPlante(legumeChoisi);
         terrain.AfficherT();
 

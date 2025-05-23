@@ -2,7 +2,7 @@ public abstract class Terrain
 {
     public string Nom { get; set; } // pour différencier les différents terrains
     public float Surface { get; set; } // en m²
-    public string Meteo { get; set; } // printemps, été, automne, hiver ou autre
+    public string Meteo { get; set; } // chaud, froid, etc.
     public string TypeSol { get; set; } // argileux, sableux, limoneux, forestier.
     public float Humidite { get; set; } // en pourcentage
     public float Precipitations { get; set; } // en mm
