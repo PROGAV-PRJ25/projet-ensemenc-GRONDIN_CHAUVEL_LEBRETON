@@ -4,7 +4,7 @@ public abstract class Plante
     public enum TypePlante { Fruit, Legume, Fleur, Herbe} //  0 = Fruit, 1 = Légume, 2 = Fleur,..
     public TypePlante Type { get; set; }
     public string MeteoPref { get; private set; }
-    public string TypeSolNeccessaire { get; private set; }
+    public string TypeSolNecessaire { get; private set; }
     public float HumiditeNecessaire { get; private set; }
     public float TemperatureNecessaire { get; private set; }
     public int LuminositeNecessaire { get; private set; }
@@ -25,7 +25,7 @@ public abstract class Plante
         Nom = nom;
         MeteoPref = meteoPref;
         Type = type;
-        TypeSolNeccessaire = typeSolNecessaire;
+        TypeSolNecessaire = typeSolNecessaire;
         HumiditeNecessaire = humiditeNecessaire;
         TemperatureNecessaire = temperatureNecessaire;
         LuminositeNecessaire = luminositeNecessaire;
@@ -43,7 +43,7 @@ public abstract class Plante
         {
             conditionsOk++;
         }
-        if (terrain.TypeSol == TypeSolNeccessaire)
+        if (terrain.TypeSol == TypeSolNecessaire)
         {
             conditionsOk++;
         }
@@ -157,7 +157,8 @@ public abstract class Plante
     
     public override string ToString()
     {
-        return $"Nom : {Nom}, Type : {Type}, Santé : {Sante}, Croissance : {Croissance}, Évolution : {AfficherEvolutionPlantes}";
+        return $"Nom : {Nom}, Type : {Type}, Santé : {Sante}, Croissance : {Croissance}";
     }
+
 
 }

@@ -18,7 +18,7 @@ public abstract class Terrain
     // Matrice représentant l’état du terrain (0=vide, 1=semis, ...)
     public int[,] T { get; set; }
 
-    public Terrain(string nom, float surface, string meteo, string typeSol, float humidite, float precipitations, float luminosite, float temperature, bool estProtege, int lignes = 15, int colonnes = 15)
+    public Terrain(string nom, float surface,  string meteo, string typeSol, float humidite, float precipitations, float luminosite, float temperature, bool estProtege, int lignes = 15, int colonnes = 15)
     {
         Nom = nom;
         Surface = surface;
@@ -36,7 +36,7 @@ public abstract class Terrain
     }
 
     // Initialiser la matrice T à vide (0)
-    public void InitialiserT()
+    public virtual void InitialiserT()
     {
         for (int i = 0; i < Lignes; i++)
         {

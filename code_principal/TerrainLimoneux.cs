@@ -1,15 +1,17 @@
-/*public class TerrainLimoneux : Terrain
+public class TerrainLimoneux : Terrain
 {
-    public override string DescriptionTerrain => "Terrain limoneux, équilibré et fertile.";
-
-    public TerrainLimoneux () : base("Terrain limoneux", 225f, "Printemps", "Limoneux", 60f, 70f, 20f, false, 15, 15)
-                            {
-                                TypeSol = "Limoneux";
-                            }
-    
-    public override bool PeutAccueillir (Plante plante)
+        public TerrainLimoneux() : base("Terrain limoneux", 225f, "Printemps", "Limoneux", 60f, 70f, 20f, false, 15, 15)
     {
-        return (plante.EspaceNecessaire*0.9f) <= SurfaceLibre; // 10% d'espace en moins requis
+        TypeSol = "Limoneux";
     }
+        
+    public override bool PeutAccueillir(Plante plante)
+    {
+        if (plante.HumiditeNecessaire > 70)
+        {
+            Console.WriteLine($"Attention : {plante.Nom} nécessite beaucoup d'eau pour croître et pourrait souffrir dans un sol sableux.");
+        }
+        return base.PeutAccueillir(plante);
+    }
+
 }
-*/
