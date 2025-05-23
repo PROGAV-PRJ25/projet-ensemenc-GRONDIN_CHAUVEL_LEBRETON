@@ -2,7 +2,8 @@
 {
     private Terrain Univers;
     public Taupe() : base("Taupe", "animal", "Fait des tas de terre et déracine les plantations", 1) { }
-public override void Action()
+    
+public override void Agir()
 {
     int nbPas = 3;
     int ligne = rnd.Next(0, Univers.Lignes);

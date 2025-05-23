@@ -5,7 +5,7 @@
     {
     }
 
-    public override void Action()
+    public override void Agir()
     {
         // Créer une liste de plantes en bonne santé
         List<Plante> plantesSaines = new List<Plante>();
