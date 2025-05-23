@@ -1,4 +1,4 @@
-public class TerrainSableux : Terrain
+/*public class TerrainSableux : Terrain
 {
     public override string DescriptionTerrain => "Terrain sableux, drainant et chaud";
 
@@ -17,3 +17,4 @@ public class TerrainSableux : Terrain
         return base.PeutAccueillir (plante);
     }
 } 
+*/

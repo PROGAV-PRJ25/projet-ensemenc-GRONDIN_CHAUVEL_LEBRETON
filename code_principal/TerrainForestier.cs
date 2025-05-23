@@ -1,4 +1,4 @@
-public class TerrainForestier : Terrain
+/*public class TerrainForestier : Terrain
 {
      public override string DescriptionTerrain => "Terrain forestier, ombragé et riche en matières organiques.";
 
@@ -28,3 +28,4 @@ public class TerrainForestier : Terrain
         return TerrainVisuel;
     }
 }
+*/

@@ -1,4 +1,4 @@
-public class Jeu
+/*public class Jeu
 {
     private Terrain terrainACtuel;
     private List<Plante> plantesPossedees = new List<Plante>();
@@ -90,3 +90,4 @@ public class Jeu
 
     }
 }
+*/
