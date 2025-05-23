@@ -27,7 +27,7 @@ public class PoussiereDeFee : BonneFee
                 && plante.PositionX < startIndex + lignesAAgir
                 && plante.Sante != Plante.EtatSante.Morte)
             {
-                plante.EtatFinal();
+                plante.AtteindreEtatFinal();
                 Console.WriteLine($"Et cela grâce à la {Nom} ✨");
             }
         }

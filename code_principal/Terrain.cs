@@ -63,10 +63,10 @@ public abstract class Terrain
                         else if (TypeSol == "Limoneux") Console.Write(" 🟫 ");
                         else Console.Write(" 🟩 ");
                         break;
-                    case 1: // semis
+                    case 1: // semis, jeunes pousses
                         Console.Write(" 🌱 ");
                         break;
-                    case 2: // jeune plante
+                    case 2: // bonne herbe
                         Console.Write(" 🌿 ");
                         break;
                     case 3: // plante mature
@@ -75,13 +75,13 @@ public abstract class Terrain
                     case 4: // tulipe
                         Console.Write(" 🌼 ");
                         break;
-                    case 5: // plante avec fruits/légumes
+                    case 5: // pomme
                         Console.Write(" 🍎 ");
                         break;
                     case 6: // pas de géant
                         Console.Write(" 👣 ");
                         break;
-                    case 7: // tas de terre
+                    case 7: // tas de terre de la taupe
                         Console.Write(" 🟤 ");
                         break;
                     case 8: // rocher
@@ -90,34 +90,34 @@ public abstract class Terrain
                     case 9: // arbre
                         Console.Write(" 🌲 ");
                         break;
-                    case 10: // arbre
+                    case 10: // fraise
                         Console.Write(" 🍓");
                         break;
-                    case 11: // arbre
+                    case 11: // carotte
                         Console.Write(" 🥕 ");
                         break;
-                    case 12: // arbre
+                    case 12: // champignon
                         Console.Write(" 🍄 ");
                         break;
-                    case 13: // arbre
+                    case 13: // aubergine
                         Console.Write(" 🍆 ");
                         break;
-                    case 14: // arbre
+                    case 14: // pasteque
                         Console.Write(" 🍉 ");
                         break;
-                    case 15: // arbre
+                    case 15: // piment
                         Console.Write(" 🌶️ ");
                         break;
-                    case 16: // arbre
+                    case 16: // rose
                         Console.Write(" 🌹 ");
                         break;
-                    case 17: // arbre
+                    case 17: // salade
                         Console.Write(" 🥬 ");
                         break;
-                    case 18: // arbre
+                    case 18: // tomate
                         Console.Write(" 🍅 ");
                         break;
-                    case 19: // arbre
+                    case 19: // tournesol
                         Console.Write(" 🌻 ");
                         break;
                     case 20: // dragon
@@ -125,6 +125,9 @@ public abstract class Terrain
                         break;
                     case 21: // feu
                         Console.Write(" 🔥 ");
+                        break;
+                    case 22: // mauvaise herbe
+                        Console.Write(" 🌾 ");
                         break;
                     default:
                         Console.Write(" · ");

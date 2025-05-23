@@ -1,4 +1,4 @@
-/*public class Maladie : Obstacle
+public class Maladie : Obstacle
 {
     public Maladie(string nom, int duree)
         : base(nom, "maladie", "contamine une plante en bonne santé", duree, affecteTerrain: false)
@@ -31,5 +31,3 @@
         }
     }
 }
-
-*/

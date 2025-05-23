@@ -25,7 +25,7 @@ public class Elfe : BonneFee
 
         fleur.Terrain = terrain;
         terrain.AjouterPlante(fleur);
-        fleur.EtatFinal();
+        fleur.AtteindreEtatFinal();
         Console.WriteLine($"Car un {Nom} a planté un.e {fleur.Nom}.");
     }
 }
