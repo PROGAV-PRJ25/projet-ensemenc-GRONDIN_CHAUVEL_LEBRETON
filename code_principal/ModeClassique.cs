@@ -90,7 +90,7 @@ public class ModeClassique
 
         for (int i = 0; i < 3; i++)
         {
-            Console.WriteLine("\nChoisissez une action : 1. Arroser  2. Soigner  3. Exposer");
+            Console.WriteLine("\nChoisissez une action : 1. Arroser  2. Soigner  3. Exposer au soleil");
             clic = Console.ReadKey().Key;
             Console.WriteLine();
 

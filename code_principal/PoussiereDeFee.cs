@@ -28,7 +28,7 @@ public class PoussiereDeFee : BonneFee
                 && plante.Sante != Plante.EtatSante.Morte)
             {
                 plante.AtteindreEtatFinal();
-                Console.WriteLine($"Et cela grâce à la {Nom} ✨");
+                Console.WriteLine($"{plante} a atteint son état final grâce à la {Nom} ✨");
             }
         }
     }

@@ -4,6 +4,7 @@ public abstract class BonneFee
     public string Effet { get; set; }
     public int DureeTours { get; set; }
     protected static Random rnd = new Random();
+    public Terrain? Univers { get; set; }
 
     public BonneFee(string nom, string effet, int dureeTours)
     {
@@ -11,7 +12,10 @@ public abstract class BonneFee
         Effet = effet;
         DureeTours = dureeTours;
     }
-
+    public void DefinirUnivers(Terrain terrain)
+    {
+        Univers = terrain;
+    }
 
     // À définir dans les classes dérivées (ex: Maladie, Intemperie, etc.)
 

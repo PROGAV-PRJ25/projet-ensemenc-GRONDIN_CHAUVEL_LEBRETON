@@ -28,7 +28,7 @@ public class Nymphe : BonneFee
                 && plante.Sante != Plante.EtatSante.Morte)
             {
                 plante.Sante = Plante.EtatSante.EnBonneSante;
-                Console.WriteLine($"Et cela grâce à la {Nom} !");
+                Console.WriteLine($"{plante} est maintenant en bonne santé grâce à la {Nom} !");
             }
         }
     }

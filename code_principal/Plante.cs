@@ -19,7 +19,6 @@ public abstract class Plante
     public Maladie Maladie { get; set; }
     public int EmojiAvantMaladie { get; set; } // pour restaurer l’emoji après guérison
 
-
     public Plante(string nom, string meteoPref, TypePlante type, string typeSolNecessaire, float humiditeNecessaire, float temperatureNecessaire, int luminositeNecessaire, int espaceNecessaire, int esperanceDeVie, float croissance = 0) // utilisation d'une constante t peu importe pour enum
     {
         Nom = nom;
@@ -87,32 +86,7 @@ public abstract class Plante
             AtteindreEtatFinal();
         }
     }
-    public void MettreAJourCroissance() // sert à faire évoluer la plante à chaque tour en fonction des conditions du terrain et si la plante a été arrosée 
-    {
-
-         float pourcentageConditions = CroissanceSelonConditions(Terrain);
-
-
-        if(EstArrosee)
->>>>>>> f022f4c6dc6fb10f651953c551e2794b060522a1
-        {
-            return;
-        }
-
-        if (Croissance <= 0.5f)
-        {
-            Console.WriteLine($"{Nom} vient de germer");
-        }
-        else if (Croissance < 1.3f)
-        {
-            Console.WriteLine($"{Nom} est en croissance");
-        }
-        else if (Croissance >= 1.5f)
-        {
-            Console.WriteLine($"{Nom} est mature");
-            AtteindreEtatFinal();
-        }
-    }
+    
     public void MettreAJourCroissance()
     {
         float pourcentageConditions = CroissanceSelonConditions(Terrain);

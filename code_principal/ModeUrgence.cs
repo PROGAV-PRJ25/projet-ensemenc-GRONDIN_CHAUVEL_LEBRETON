@@ -27,7 +27,7 @@ public class ModeUrgence
 
         // Ensuite le joueur choisit la réponse à cette attaque
         ProposerChoixUrgence();
-        
+
         terrain.AfficherT();
     }
 
@@ -40,15 +40,12 @@ public class ModeUrgence
         }
 
         string? choix;
-        do
-        {
-            Console.WriteLine("\n🔥 Que voulez-vous faire après l'attaque ?");
-            Console.WriteLine("1. 🛡️ Tout protéger (les plantes sont malades mais vivantes)");
-            Console.WriteLine("2. 🏃 Sauver la moitié (saines), les autres sont perdues");
-            Console.Write("Votre choix (1 ou 2) : ");
-            choix = Console.ReadLine();
-        } while (choix != "1" && choix != "2");
+        Console.WriteLine("\n🔥 Que voulez-vous faire après l'attaque ?");
+        Console.WriteLine("1. 🛡️ Tout protéger (les plantes sont malades mais vivantes)");
+        Console.WriteLine("2. 🏃 Sauver la moitié (saines), les autres sont perdues");
+        Console.Write("Votre choix (1 ou 2) : ");
 
+        choix = Console.ReadLine();
         if (choix == "1") ExecuterProtectionTotale();
         else ExecuterEvacuationPartielle();
 
@@ -75,7 +72,7 @@ public class ModeUrgence
 
 
     private void ExecuterEvacuationPartielle()
-{
+    {
         int total = terrain.PlantesCultivees.Count;
         int àBrûler = total / 2;
 
